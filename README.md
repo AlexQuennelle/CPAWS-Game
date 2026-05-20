@@ -6,12 +6,8 @@
 
 * Cate Runions
 * Alex Quennelle
-
-### Artists:
-
-* Apple Demavivas
-
 * Conor Daly
 
 ### Artists:
 
+* Apple Demavivas
