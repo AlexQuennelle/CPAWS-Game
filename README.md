@@ -11,3 +11,5 @@
 ### Artists:
 
 * Apple Demavivas
+* Mariola Jankowski
+
