@@ -1,6 +1,7 @@
 # CPAWS-Game
 
-
-
-cate
-
+## Contributors
+### Programmers:
+- Cate Runions
+- Alex Quennelle
+### Artists:
