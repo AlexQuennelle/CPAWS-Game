@@ -11,3 +11,7 @@
 
 * Apple Demavivas
 
+* Conor Daly
+
+### Artists:
+
