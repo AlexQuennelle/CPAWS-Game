@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.AI;
 public class AnimalStateMachine : MonoBehaviour
 {
 
-	[SerializeField] private GameObject animalPrototype;
+	[SerializeField] private GameObject _animalPrototype;
+	[SerializeField] private NavMeshAgent _agent;
 
 	AnimalBaseState _currentState;
 	public AnimalIdleState IdleState = new AnimalIdleState();
@@ -25,5 +27,10 @@ public class AnimalStateMachine : MonoBehaviour
 	{
 		_currentState = state;
 		_currentState.EnterState(this);
+	}
+
+	public NavMeshAgent GetNavAgent()
+	{
+		return _animalPrototype.GetComponent<NavMeshAgent>();
 	}
 }

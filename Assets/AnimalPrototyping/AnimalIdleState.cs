@@ -8,6 +8,6 @@ public class AnimalIdleState : AnimalBaseState
 
 	public override void UpdateState(AnimalStateMachine animal)
 	{
-
+		animal.SwitchState(animal.WanderState);
 	}
 }
