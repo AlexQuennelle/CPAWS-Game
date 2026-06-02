@@ -8,17 +8,13 @@ public class AnimalWanderState : AnimalBaseState
 		Debug.Log("Wander State Entered");
 
 		Vector3 wanderPosition = GetWanderPosition(animal);
-		/*Debug.Log(NavMesh.SamplePosition(
-			animal.GetAnimalPosition(),
-			out hit,
-			20,
-			NavMesh.AllAreas
-		));*/
+
 		animal.GetNavAgent().destination = wanderPosition;
 	}
 
 	public override void UpdateState(AnimalStateMachine animal)
 	{
+		// Return to Idle state after reaching the wander destination
 		if (animal.GetNavAgent().remainingDistance <= animal.GetNavAgent().stoppingDistance)
 		{
 			animal.SwitchState(animal.IdleState);
@@ -26,21 +22,20 @@ public class AnimalWanderState : AnimalBaseState
 	}
 	private Vector3 GetWanderPosition(AnimalStateMachine animal)
 	{
-		Vector3 position = new Vector3(
-			Random.Range(-20, 21),
+		// Calculate a random position based on the animal's current location
+		Vector3 currentPosition = animal.GetAnimal().transform.position;
+
+		Vector3 newPosition = new Vector3(
+			Random.Range(-10, 11),
 			0,
-			Random.Range(-20, 21)
+			Random.Range(-10, 11)
 		);
 
-		while (!NavMesh.SamplePosition(position, out NavMeshHit hit, 20, NavMesh.AllAreas))
-		{
-			position = new Vector3(
-				Random.Range(-20, 21),
-				0,
-				Random.Range(-20, 21)
-			);
-		}
+		newPosition += currentPosition;
 
-		return position;
+		// Note: If the new position is outside the navmesh, the agent appears to handle it automatically without issue :D
+		// This differs from unreal in which the ai would shit itself.
+
+		return newPosition;
 	}
 }

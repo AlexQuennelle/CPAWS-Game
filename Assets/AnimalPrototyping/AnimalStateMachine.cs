@@ -33,4 +33,9 @@ public class AnimalStateMachine : MonoBehaviour
 	{
 		return _animalPrototype.GetComponent<NavMeshAgent>();
 	}
+
+	public GameObject GetAnimal() 
+	{ 
+		return _animalPrototype;
+	}
 }
