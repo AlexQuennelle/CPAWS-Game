@@ -9,5 +9,7 @@ public class AnimalIdleState : AnimalBaseState
 	public override void UpdateState(AnimalStateMachine animal)
 	{
 		animal.SwitchState(animal.WanderState);
+
+		// TO-DO: Have the animal wait before wandering to a new location. Probably a random amount of time?
 	}
 }

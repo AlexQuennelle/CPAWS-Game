@@ -9,13 +9,13 @@ public class AnimalWanderState : AnimalBaseState
 
 		Vector3 wanderPosition = GetWanderPosition(animal);
 
-		animal.GetNavAgent().destination = wanderPosition;
+		animal.Agent.destination = wanderPosition;
 	}
 
 	public override void UpdateState(AnimalStateMachine animal)
 	{
 		// Return to Idle state after reaching the wander destination
-		if (animal.GetNavAgent().remainingDistance <= animal.GetNavAgent().stoppingDistance)
+		if (animal.Agent.remainingDistance <= animal.Agent.stoppingDistance)
 		{
 			animal.SwitchState(animal.IdleState);
 		}
@@ -23,7 +23,7 @@ public class AnimalWanderState : AnimalBaseState
 	private Vector3 GetWanderPosition(AnimalStateMachine animal)
 	{
 		// Calculate a random position based on the animal's current location
-		Vector3 currentPosition = animal.GetAnimal().transform.position;
+		Vector3 currentPosition = animal.Animal.transform.position;
 
 		Vector3 newPosition = new Vector3(
 			Random.Range(-10, 11),

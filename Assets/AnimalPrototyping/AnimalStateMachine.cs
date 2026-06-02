@@ -2,13 +2,18 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AnimalStateMachine : MonoBehaviour
 {
-
 	[SerializeField] private GameObject _animalPrototype;
 	[SerializeField] private NavMeshAgent _agent;
+	public GameObject Animal { get { return _animalPrototype; } }
+	public float Test { get; private set; }
+	public NavMeshAgent Agent { get { return _agent; } }
 
 	AnimalBaseState _currentState;
-	public AnimalIdleState IdleState = new AnimalIdleState();
-	public AnimalWanderState WanderState = new AnimalWanderState();
+
+	[SerializeField]
+	public AnimalBaseState IdleState;
+	[SerializeField]
+	public AnimalBaseState WanderState;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -27,15 +32,5 @@ public class AnimalStateMachine : MonoBehaviour
 	{
 		_currentState = state;
 		_currentState.EnterState(this);
-	}
-
-	public NavMeshAgent GetNavAgent()
-	{
-		return _animalPrototype.GetComponent<NavMeshAgent>();
-	}
-
-	public GameObject GetAnimal() 
-	{ 
-		return _animalPrototype;
 	}
 }

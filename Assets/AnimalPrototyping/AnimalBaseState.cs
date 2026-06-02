@@ -1,4 +1,6 @@
-public abstract class AnimalBaseState
+using UnityEngine;
+
+public abstract class AnimalBaseState : MonoBehaviour
 {
 	public abstract void EnterState(AnimalStateMachine animal);
 
