@@ -1,6 +1,9 @@
 using UnityEngine;
 public class AnimalIdleState : AnimalBaseState
 {
+
+	float _waitTime = 3;
+	float _currentTime = 0;
 	public override void EnterState(AnimalStateMachine animal)
 	{
 		Debug.Log("Idle State Entered");
@@ -8,8 +11,12 @@ public class AnimalIdleState : AnimalBaseState
 
 	public override void UpdateState(AnimalStateMachine animal)
 	{
-		animal.SwitchState(animal.WanderState);
+		_currentTime += Time.deltaTime;
 
-		// TO-DO: Have the animal wait before wandering to a new location. Probably a random amount of time?
+		if (_currentTime >= _waitTime) 
+		{
+			_currentTime = 0;
+			animal.SwitchState(animal.WanderState);
+		}				
 	}
 }
