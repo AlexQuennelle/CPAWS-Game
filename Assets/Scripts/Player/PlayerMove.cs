@@ -1,14 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {
-	private Vector3 _initialPosition;
-
 	[SerializeField]
 	private float _moveSpeed;
 
@@ -17,18 +11,11 @@ public class PlayerMove : MonoBehaviour
 
 	[SerializeField]
 	private float _playerHeight;
-	[SerializeField]
-	private LayerMask _groundMask;
 
 	private Vector2 _lastMoveInput;
 
 	[SerializeField]
 	private Rigidbody _rb;
-
-	private bool _grounded
-	{
-		get { return Physics.Raycast(transform.position + Vector3.up, Vector3.down, (_playerHeight / 2f) + 0.3f, _groundMask); }
-	}
 
 	private void OnEnable()
 	{

@@ -1,13 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
 using Unity.Cinemachine;
 
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerPerspectiveHandler : MonoBehaviour
 {
