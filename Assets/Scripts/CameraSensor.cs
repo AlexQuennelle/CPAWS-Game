@@ -1,6 +1,5 @@
 using UnityEngine;
 
-using System;
 using System.Collections.Generic;
 
 public class CameraSensor : MonoBehaviour
@@ -30,18 +29,16 @@ public class CameraSensor : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		CameraTarget target = other.gameObject.GetComponent<CameraTarget>();
-		if (target != null)
+		if (other.gameObject.GetComponent<CameraTarget>() != null)
 		{
-			_targets.Add(target);
+			_targets.Add(other.gameObject.GetComponent<CameraTarget>());
 		}
 	}
 	void OnTriggerExit(Collider other)
 	{
-		CameraTarget target = other.gameObject.GetComponent<CameraTarget>();
-		if (target != null)
+		if (other.gameObject.GetComponent<CameraTarget>() != null)
 		{
-			_targets.Remove(target);
+			_targets.Remove(other.gameObject.GetComponent<CameraTarget>());
 		}
 	}
 
