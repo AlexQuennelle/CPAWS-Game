@@ -19,17 +19,12 @@ public class PlayerLook : MonoBehaviour
 	public float MaxVerticalLook { get; set; } = 70f;
 	public float MinVerticalLook { get; set; } = -55f;
 
-	private void Awake()
-	{
-		if (_playerYaw == null) _playerYaw = transform;
-	}
-
 	private void OnEnable()
 	{
 		XRot = 0f;
 		YRot = 0f;
 		_playerYaw.rotation = Quaternion.Euler(Vector3.zero);
-		_playerPitch.transform.localRotation = Quaternion.Euler(Vector3.zero);
+		_playerPitch.localRotation = Quaternion.Euler(Vector3.zero);
 	}
 
 	public void HandleLook(Vector2 lookDelta)
@@ -41,7 +36,7 @@ public class PlayerLook : MonoBehaviour
 
 		// player horizontal rotation
 		_playerYaw.rotation = Quaternion.AngleAxis(YRot, Vector3.up);
-		// camera tracking rotation
-		_playerPitch.transform.localRotation = Quaternion.AngleAxis(XRot, Vector3.right);
+		// camera vertical rotation
+		_playerPitch.localRotation = Quaternion.AngleAxis(XRot, Vector3.right);
 	}
 }
