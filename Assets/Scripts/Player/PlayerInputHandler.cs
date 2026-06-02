@@ -23,7 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
 	private void OnEnable()
 	{
 		_playerInput.actions.FindAction("Look").performed += OnLook;
-		//_playerInput.actions.FindAction("ChangeCamera").performed += OnChangeCamera;
+		_playerInput.actions.FindAction("ChangeCamera").performed += OnChangeCamera;
 		_playerInput.actions.FindAction("Move").performed += OnMoveStart;
 		_playerInput.actions.FindAction("Move").canceled += OnMoveEnd;
 	}
@@ -31,7 +31,7 @@ public class PlayerInputHandler : MonoBehaviour
 	private void OnDisable()
 	{
 		_playerInput.actions.FindAction("Look").performed -= OnLook;
-		//_playerInput.actions.FindAction("ChangeCamera").performed -= OnChangeCamera;
+		_playerInput.actions.FindAction("ChangeCamera").performed -= OnChangeCamera;
 		_playerInput.actions.FindAction("Move").performed -= OnMoveStart;
 		_playerInput.actions.FindAction("Move").canceled -= OnMoveEnd;
 	}
