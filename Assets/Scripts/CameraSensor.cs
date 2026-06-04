@@ -19,7 +19,7 @@ public class CameraSensor : MonoBehaviour
 	[SerializeField]
 	private RenderTexture _texture;
 
-	// [SerializeField]
+	[Header("Debug"), SerializeField]
 	private List<CameraTarget> _targets = new();
 
 	private void Start()
@@ -45,6 +45,10 @@ public class CameraSensor : MonoBehaviour
 	public void TakePicture()
 	{
 		Debug.Log("Taking Picture");
+		foreach (CameraTarget target in _targets)
+		{
+			_ = target.GetScore(_cam, transform);
+		}
 	}
 
 	private void RecalculateSensor()
