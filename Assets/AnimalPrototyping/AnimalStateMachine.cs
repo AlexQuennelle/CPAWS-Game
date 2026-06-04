@@ -2,13 +2,18 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AnimalStateMachine : MonoBehaviour
 {
-	[SerializeField] private GameObject _animalPrototype;
-	[SerializeField] private NavMeshAgent _agent;
-	public GameObject Animal { get { return _animalPrototype; } }
-	public float Test { get; private set; }
-	public NavMeshAgent Agent { get { return _agent; } }
+	// Goal: reusable, no circle reference, pleasant to use animal ai brain
+	// Problem: how the fuck
+
+	[field:SerializeField]
+	public NavMeshAgent Agent { get; private set; }
+	[field:SerializeField]
+	public NavMeshAgent Animal { get; private set; }
 
 	private AnimalBaseState _currentState;
+
+	[SerializeField] 
+	private float hunger = 0;
 
 	[SerializeField]
 	public AnimalBaseState IdleState;
@@ -26,6 +31,14 @@ public class AnimalStateMachine : MonoBehaviour
 	void Update()
 	{
 		_currentState.UpdateState(this);
+
+		// Basic hunger system, will be better implemented later
+		hunger += Time.deltaTime / 60;
+		if(hunger >= 20)
+		{
+			//SwitchState();
+			hunger = 0;
+		}
 	}
 
 	public void SwitchState(AnimalBaseState state)

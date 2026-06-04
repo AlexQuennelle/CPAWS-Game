@@ -521,8 +521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05fe5a637d164fc458507bf2225f8b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalStateMachine
-  _animalPrototype: {fileID: 7918577767600826110}
-  _agent: {fileID: 3222067837884668860}
+  <Agent>k__BackingField: {fileID: 3222067837884668860}
+  <Animal>k__BackingField: {fileID: 3222067837884668860}
+  hunger: 0
   IdleState: {fileID: 6385675528677976051}
   WanderState: {fileID: 8693275135268216617}
 --- !u!114 &8693275135268216617
