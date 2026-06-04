@@ -6,8 +6,10 @@
 
 * Cate Runions
 * Alex Quennelle
+* Conor Daly
 
 ### Artists:
 
 * Apple Demavivas
+* Mariola Jankowski
 
