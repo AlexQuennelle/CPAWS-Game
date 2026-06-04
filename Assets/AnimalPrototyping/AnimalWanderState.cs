@@ -1,35 +1,42 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AnimalWanderState : AnimalBaseState
+public class AnimalWanderState : BehaviourState
 {
-	[SerializeField] private float _wanderRange;
-	public override void EnterState(AnimalStateMachine animal)
+	[SerializeField] 
+	private float _wanderRange;
+	private bool _stateEnabled = false;
+
+	[SerializeField] 
+	private float _maxWaitTime;
+	[SerializeField]
+	private float _minWaitTime;
+
+	private NavMeshAgent _agent;
+
+	private float _waitTime = 0;
+	private float _currentTime = 0;
+
+	public void OnEnable()
 	{
-		Debug.Log("Wander State Entered");
-
-		Vector3 wanderPosition = GetWanderPosition(animal);
-
-		animal.Agent.destination = wanderPosition;
+		_waitTime = Random.Range(_minWaitTime, _maxWaitTime );
+	}
+	public override void EnterState(NavMeshAgent agent)
+	{
+		_agent = agent;
+		_stateEnabled = true;
+		agent.destination = GetWanderPosition();
 	}
 
-	public override void UpdateState(AnimalStateMachine animal)
-	{
-		// Return to Idle state after reaching the wander destination
-		if (animal.Agent.remainingDistance <= animal.Agent.stoppingDistance)
-		{
-			animal.SwitchState(animal.IdleState);
-		}
-	}
-	private Vector3 GetWanderPosition(AnimalStateMachine animal)
+	private Vector3 GetWanderPosition()
 	{
 		// Calculate a random position based on the animal's current location
-		Vector3 currentPosition = animal.Animal.transform.position;
+		Vector3 currentPosition = transform.position;
 
 		Vector3 newPosition = new Vector3(
-			Random.Range(-_wanderRange, _wanderRange + 1),
+			Random.Range(-_wanderRange, _wanderRange),
 			0,
-			Random.Range(-_wanderRange, _wanderRange + 1)
+			Random.Range(-_wanderRange, _wanderRange)
 		);
 
 		newPosition += currentPosition;
@@ -38,5 +45,28 @@ public class AnimalWanderState : AnimalBaseState
 		// This differs from unreal in which the ai would shit itself.
 
 		return newPosition;
+	}
+
+	private void Update()
+	{
+		if (!_stateEnabled) 
+		{
+			_currentTime += Time.deltaTime;
+			if (_currentTime >= _waitTime)
+			{
+				RaiseRequestEnter();
+			}
+			return; 
+		}
+		
+
+		if (_agent.remainingDistance <= _agent.stoppingDistance)
+		{
+			_stateEnabled = false;
+			_waitTime = Random.Range(_minWaitTime, _maxWaitTime);
+			_currentTime = 0;
+			RaiseBehaviourEnd();
+		}
+
 	}
 }

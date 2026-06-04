@@ -353,8 +353,8 @@ GameObject:
   - component: {fileID: 4389976969335742887}
   - component: {fileID: 3222067837884668860}
   - component: {fileID: 7339678190332892919}
-  - component: {fileID: 8693275135268216617}
-  - component: {fileID: 6385675528677976051}
+  - component: {fileID: 8971074936939139905}
+  - component: {fileID: 2470902255332947431}
   m_Layer: 0
   m_Name: AnimalPrototype
   m_TagString: Untagged
@@ -522,24 +522,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalStateMachine
   <Agent>k__BackingField: {fileID: 3222067837884668860}
-  <Animal>k__BackingField: {fileID: 3222067837884668860}
-  hunger: 0
-  IdleState: {fileID: 6385675528677976051}
-  WanderState: {fileID: 8693275135268216617}
---- !u!114 &8693275135268216617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7918577767600826110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5883f0a04f046d448cf5c5e8438ded7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimalWanderState
-  _wanderRange: 10
---- !u!114 &6385675528677976051
+  _states:
+  - {fileID: 2470902255332947431}
+  _defaultState: {fileID: 8971074936939139905}
+--- !u!114 &8971074936939139905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -551,4 +537,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6c6521b5b784943939ca700f7acf07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalIdleState
-  _waitTimeRange: 10
+  <Priority>k__BackingField: -1
+--- !u!114 &2470902255332947431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918577767600826110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5883f0a04f046d448cf5c5e8438ded7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalWanderState
+  <Priority>k__BackingField: 1
+  _wanderRange: 10
+  _maxWaitTime: 5
+  _minWaitTime: 0

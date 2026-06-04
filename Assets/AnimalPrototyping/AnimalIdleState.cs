@@ -1,24 +1,10 @@
 using UnityEngine;
-public class AnimalIdleState : AnimalBaseState
+using UnityEngine.AI;
+
+public class AnimalIdleState : BehaviourState
 {
-
-	[SerializeField] private float _waitTimeRange;
-	float _waitTime = 0;
-	float _currentTime = 0;
-	public override void EnterState(AnimalStateMachine animal)
+	public override void EnterState(NavMeshAgent agent)
 	{
-		Debug.Log("Idle State Entered");
-		_waitTime = Random.Range(0, _waitTimeRange + 1f);
-	}
-
-	public override void UpdateState(AnimalStateMachine animal)
-	{
-		_currentTime += Time.deltaTime;
-
-		if (_currentTime >= _waitTime) 
-		{
-			_currentTime = 0;
-			animal.SwitchState(animal.WanderState);
-		}				
+		agent.destination = transform.position;
 	}
 }
