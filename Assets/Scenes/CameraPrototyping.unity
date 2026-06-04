@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 916122671}
   - component: {fileID: 916122675}
   - component: {fileID: 916122676}
+  - component: {fileID: 916122677}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -785,6 +786,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9131d57ccd1bd0b19b202767d7701d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraTarget
+  _baseScore: 10
+  _modifiers:
+  - {fileID: 916122677}
+--- !u!114 &916122677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916122670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d34c5a9e45ae7ba79ec98d394f5d56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetCenteredModifier
+  <IsMultiplier>k__BackingField: 1
+  _minMod: 0
+  _maxMod: 1
+  _invert: 0
 --- !u!1 &917792515
 GameObject:
   m_ObjectHideFlags: 0
