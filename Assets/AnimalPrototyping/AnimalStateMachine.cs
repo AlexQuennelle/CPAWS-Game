@@ -8,7 +8,7 @@ public class AnimalStateMachine : MonoBehaviour
 	public float Test { get; private set; }
 	public NavMeshAgent Agent { get { return _agent; } }
 
-	AnimalBaseState _currentState;
+	private AnimalBaseState _currentState;
 
 	[SerializeField]
 	public AnimalBaseState IdleState;

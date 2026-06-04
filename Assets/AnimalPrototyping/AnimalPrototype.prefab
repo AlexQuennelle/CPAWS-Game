@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5883f0a04f046d448cf5c5e8438ded7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalWanderState
+  _wanderRange: 10
 --- !u!114 &6385675528677976051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,3 +550,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6c6521b5b784943939ca700f7acf07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalIdleState
+  _waitTimeRange: 10

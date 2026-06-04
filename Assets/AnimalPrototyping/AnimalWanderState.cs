@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class AnimalWanderState : AnimalBaseState
 {
+	[SerializeField] private float _wanderRange;
 	public override void EnterState(AnimalStateMachine animal)
 	{
 		Debug.Log("Wander State Entered");
@@ -26,9 +27,9 @@ public class AnimalWanderState : AnimalBaseState
 		Vector3 currentPosition = animal.Animal.transform.position;
 
 		Vector3 newPosition = new Vector3(
-			Random.Range(-10, 11),
+			Random.Range(-_wanderRange, _wanderRange + 1),
 			0,
-			Random.Range(-10, 11)
+			Random.Range(-_wanderRange, _wanderRange + 1)
 		);
 
 		newPosition += currentPosition;
