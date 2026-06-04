@@ -1,9 +1,18 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
 {
-	public int GetScore()
+	[SerializeField]
+	private int _baseScore = 10;
+	[SerializeField]
+	private List<TargetScoreModifier> _modifiers;
+
+	public int GetScore(Camera cam, Transform transform)
 	{
-		return 0;
+		Rect bounds;
+
+		return _baseScore;
 	}
 }
