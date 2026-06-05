@@ -3,6 +3,7 @@ using System.Linq;
 
 using UnityEngine;
 using UnityEngine.AI;
+
 public class AnimalStateMachine : MonoBehaviour
 {
 	[field: SerializeField]
@@ -14,7 +15,7 @@ public class AnimalStateMachine : MonoBehaviour
 	[SerializeField]
 	private BehaviourState _defaultState;
 
-	private HashSet<BehaviourState> _stateQueue = new HashSet<BehaviourState>();
+	private HashSet<BehaviourState> _stateQueue = new();
 
 	private BehaviourState _currentState;
 
@@ -44,12 +45,12 @@ public class AnimalStateMachine : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Event handler to process state change requests.
-	/// <para> Adds <paramref name="state"/> to a priority queue. </para>
-	/// <para> States already in the queue will not be added. </para>
+	///   <para> Event handler to process state change requests.</para>
+	///   <para> Adds <paramref name="state"/> to a priority queue. </para>
+	///   <para> States already in the queue will not be added. </para>
 	/// </summary>
 	/// <param name="state">
-	/// State that requested to be added to the queue.
+	///   State that requested to be added to the queue.
 	/// </param>
 	private void HandleStateRequest(BehaviourState state)
 	{
@@ -62,13 +63,15 @@ public class AnimalStateMachine : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Event handler for state completion.
-	/// <para> Removes <paramref name="state"/> from priority queue. </para>
-	/// <para> Switches to the highest priority state in the queue. </para>
-	/// <para> If no states are in the queue, switches to the default state. </para>
+	///   <para> Event handler for state completion. </para>
+	///   <para> Removes <paramref name="state"/> from priority queue. </para>
+	///   <para>
+	///     Switches to the highest priority state in the queue. If no states
+	///     are in the queue, switches to the default state.
+	///   </para>
 	/// </summary>
 	/// <param name="state">
-	/// State that signalled its completion.
+	///   State that signalled its completion.
 	/// </param>
 	private void HandleStateEnd(BehaviourState state)
 	{

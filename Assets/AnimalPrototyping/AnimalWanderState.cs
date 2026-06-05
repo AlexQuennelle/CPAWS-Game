@@ -36,16 +36,13 @@ public class AnimalWanderState : BehaviourState
 	{
 		Vector3 currentPosition = transform.position;
 
-		Vector3 newPosition = new Vector3(
+		Vector3 newPosition = new(
 			Random.Range(-_wanderRange, _wanderRange),
 			0,
 			Random.Range(-_wanderRange, _wanderRange)
 		);
 
 		newPosition += currentPosition;
-
-		// Note: If the new position is outside the navmesh, the agent appears to handle it automatically without issue :D
-		// This differs from unreal in which the ai would shit itself
 
 		return newPosition;
 	}
