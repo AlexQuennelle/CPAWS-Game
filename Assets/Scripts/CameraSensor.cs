@@ -42,9 +42,11 @@ public class CameraSensor : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	///   TODO: Document
+	/// </summary>
 	public void TakePicture()
 	{
-		Debug.Log("Taking Picture");
 		foreach (CameraTarget target in _targets)
 		{
 			_ = target.GetScore(_cam, transform);
