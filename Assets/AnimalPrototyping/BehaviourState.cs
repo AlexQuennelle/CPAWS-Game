@@ -8,8 +8,6 @@ public abstract class BehaviourState : MonoBehaviour
 	public event Action<BehaviourState> OnRequestEnter;
 	public event Action<BehaviourState> OnBehaviourEnd;
 
-	private NavMeshAgent _agent;
-
 	[field: SerializeField]
 	public int Priority { get; private set; }
 

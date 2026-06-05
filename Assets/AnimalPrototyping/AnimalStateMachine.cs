@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AnimalStateMachine : MonoBehaviour
 {
-	[field:SerializeField]
+	[field: SerializeField]
 	public NavMeshAgent Agent { get; private set; }
 
 	[SerializeField]
@@ -21,6 +20,7 @@ public class AnimalStateMachine : MonoBehaviour
 
 	private void OnEnable()
 	{
+		// Bind events to each state attached the state machine
 		foreach (BehaviourState state in _states)
 		{
 			state.OnRequestEnter += HandleStateRequest;
@@ -55,7 +55,7 @@ public class AnimalStateMachine : MonoBehaviour
 	{
 		_stateQueue.Add(state);
 
-		if(_currentState.Priority < state.Priority || _currentState == _defaultState)
+		if (_currentState.Priority < state.Priority || _currentState == _defaultState)
 		{
 			SwitchState(state);
 		}
