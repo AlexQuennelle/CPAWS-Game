@@ -14,7 +14,14 @@ public class TargetCenteredModifier : TargetScoreModifier
 		float normalizedDist =
 			Vector2.Distance(cam.pixelRect.center, bounds.center)
 			/ Vector2.Distance(Vector2.zero, cam.pixelRect.center);
+		normalizedDist = Mathf.Pow(normalizedDist, 2.0f);
 
-		return 0;
+		// Modified Gaussian formula
+		float finalValue = Mathf.Exp(-(normalizedDist / 0.5f));
+		finalValue = _invert ? 1 - finalValue : finalValue;
+		finalValue *= _maxMod - _minMod;
+		finalValue += _minMod;
+
+		return finalValue;
 	}
 }

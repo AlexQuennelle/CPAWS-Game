@@ -81,6 +81,6 @@ public class CameraTarget : MonoBehaviour
 				score += modValue;
 		}
 
-		return Mathf.FloorToInt(score);
+		return Mathf.RoundToInt(score);
 	}
 }

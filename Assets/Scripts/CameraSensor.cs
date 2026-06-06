@@ -47,10 +47,12 @@ public class CameraSensor : MonoBehaviour
 	/// </summary>
 	public void TakePicture()
 	{
+		float score = 0.0f;
 		foreach (CameraTarget target in _targets)
 		{
-			_ = target.GetScore(_cam, transform);
+			score += target.GetScore(_cam, transform);
 		}
+		Debug.Log($"Picture worth {score} points!");
 	}
 
 	private void RecalculateSensor()
