@@ -591,7 +591,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5557779243990694864}
-  - component: {fileID: 3273025576737042429}
   - component: {fileID: 8373725245383464675}
   - component: {fileID: 1326960859858695934}
   - component: {fileID: 3339557798372118646}
@@ -618,22 +617,6 @@ Transform:
   - {fileID: 2947997480402921031}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3273025576737042429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5281456325609432021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08919eff4f7b37d499c53ca7b2cb5e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MooseStateMachine
-  _animalPrototype: {fileID: 5281456325609432021}
-  _agent: {fileID: 8373725245383464675}
-  IdleState: {fileID: 0}
-  WanderState: {fileID: 0}
 --- !u!195 &8373725245383464675
 NavMeshAgent:
   m_ObjectHideFlags: 0
