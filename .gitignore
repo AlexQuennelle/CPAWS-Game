@@ -15,6 +15,7 @@
 /[Uu]ser[Ss]ettings/
 *.log
 .vscode/
+.idea/
 
 *.sh
 
