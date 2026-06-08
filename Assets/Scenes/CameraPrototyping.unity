@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9131d57ccd1bd0b19b202767d7701d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraTarget
-  _baseScore: 10
+  <Info>k__BackingField: {fileID: 11400000, guid: 22fc9d617ea08360e960f720e7cd2654, type: 2}
   _modifiers:
   - {fileID: 916122677}
   _debugRect: {fileID: 1355451838}
@@ -1084,7 +1084,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4968918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.2492414}
+  m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -1142,7 +1142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1579623290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,10 +1278,6 @@ PrefabInstance:
     - target: {fileID: 5473817668296775685, guid: 7ab46eb357c79ad7da450c0ffa4965fc, type: 3}
       propertyPath: m_Name
       value: PlayerCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650857824364427848, guid: 7ab46eb357c79ad7da450c0ffa4965fc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

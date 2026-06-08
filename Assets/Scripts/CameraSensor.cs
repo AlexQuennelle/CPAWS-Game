@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using System.Collections.Generic;
+using System;
 
 public class CameraSensor : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class CameraSensor : MonoBehaviour
 	[SerializeField]
 	private RenderTexture _texture;
 
-	[Header("Debug"), SerializeField]
 	private List<CameraTarget> _targets = new();
 
 	private void Start()
@@ -43,18 +43,44 @@ public class CameraSensor : MonoBehaviour
 	}
 
 	/// <summary>
-	///   TODO: Document
+	///   <para>
+	///     Renders a picture from the camera and calculates the score for that
+	///     picture.
+	///   </para>
+	///   <para>
+	///     Score is calculated by accumulating the individual score values
+	///     contributed by any <see cref="CameraTarget"> objects registered as
+	///     "in frame" by the camera frustum.
+	///   </para>
 	/// </summary>
-	public void TakePicture()
+	public PictureInfo TakePicture()
 	{
 		float score = 0.0f;
+		List<TargetInfo> subjects = new();
 		foreach (CameraTarget target in _targets)
 		{
-			score += target.GetScore(_cam, transform);
+			int? targetScore = target.GetScore(_cam, transform);
+			if (targetScore != null)
+			{
+				score += (int)targetScore;
+				subjects.Add(target.Info);
+			}
 		}
-		Debug.Log($"Picture worth {score} points!");
+		// Convoluted process to convert a RenderTexture to a Texture2D
+		// without bungling the texture format.
+		_cam.Render();
+		Texture2D pic = new(_texture.width, _texture.height);
+		pic.Reinitialize(pic.width, pic.height, _texture.graphicsFormat, true);
+		RenderTexture.active = _texture;
+		pic.ReadPixels(new Rect(0, 0, _texture.width, _texture.height), 0, 0);
+		pic.Apply();
+		return new(pic, (int)score, subjects);
 	}
 
+	/// <summary>
+	///   Reconstructs the camera frustum collider. Call when changing
+	///   properties on the camera.
+	/// </summary>
 	private void RecalculateSensor()
 	{
 		if (_cam != null)
@@ -90,4 +116,24 @@ public class CameraSensor : MonoBehaviour
 			_frustumCol.sharedMesh = _frustumMesh;
 		}
 	}
+}
+
+/// <summary>
+///   Class containing relevant info to a given picture.
+/// </summary>
+[Serializable]
+public class PictureInfo
+{
+	public PictureInfo(Texture2D tex, int score, List<TargetInfo> subjects)
+	{
+		Tex = tex;
+		Score = score;
+		Subjects = subjects;
+	}
+	[field: SerializeField]
+	public Texture2D Tex { get; private set; }
+	[field: SerializeField]
+	public int Score { get; private set; }
+	[field: SerializeField]
+	public List<TargetInfo> Subjects { get; private set; }
 }

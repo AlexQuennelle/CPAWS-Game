@@ -8,13 +8,10 @@ using UnityEngine;
 /// </summary>
 public class CameraTarget : MonoBehaviour
 {
-	[SerializeField]
-	private int _baseScore = 10;
+	[field: SerializeField]
+	public TargetInfo Info { get; private set; }
 	[SerializeField]
 	private List<TargetScoreModifier> _modifiers;
-	[Header("Debug")]
-	[SerializeField]
-	private RectTransform _debugRect;
 
 	/// <summary>
 	///   Calculates the final score the target should contribute to the final
@@ -32,7 +29,7 @@ public class CameraTarget : MonoBehaviour
 	///   The transform component of the object <paramref name="cam"/> is
 	///   attached to.
 	/// </param>
-	public int GetScore(Camera cam, Transform camTransform)
+	public int? GetScore(Camera cam, Transform camTransform)
 	{
 		if (!TryGetComponent(out Collider col))
 		{
@@ -68,10 +65,7 @@ public class CameraTarget : MonoBehaviour
 		bounds.min = bottomLeft;
 		bounds.max = topRight;
 
-		_debugRect.sizeDelta = bounds.size;
-		_debugRect.anchoredPosition = bounds.position + (bounds.size / 2.0f);
-
-		float score = _baseScore;
+		float score = Info.Score;
 		foreach (TargetScoreModifier modifier in _modifiers)
 		{
 			float modValue = modifier.GetValue(cam, camTransform, bounds);

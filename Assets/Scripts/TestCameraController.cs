@@ -29,6 +29,7 @@ public class TestCameraController : MonoBehaviour
 		if (_cam == null)
 			return;
 
-		_cam.TakePicture();
+		PictureInfo pic = _cam.TakePicture();
+		Debug.Log($"Picture worth {pic.Score} taken!");
 	}
 }

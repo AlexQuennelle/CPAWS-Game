@@ -42,7 +42,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5473817668296775685}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -168,5 +168,6 @@ MonoBehaviour:
   _nearPlane: 0.3
   _farPlane: 50
   _frustumCol: {fileID: 3875291590522105313}
-  _texture: {fileID: 0}
+  _texture: {fileID: 8600000, guid: 6d1eaf83d5b4a2a29b65fa4ea58b95bf, type: 2}
+  _pictures: []
   _targets: []
