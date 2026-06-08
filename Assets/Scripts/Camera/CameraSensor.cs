@@ -87,7 +87,7 @@ public class CameraSensor : MonoBehaviour
 		{
 			int resX = _cam.scaledPixelWidth;
 			int resY = _cam.scaledPixelHeight;
-			Vector3 offset = _cam.transform.parent.localPosition;
+			Vector3 offset = _cam.transform.parent.position;
 			Vector3[] frustumVerts = {
 				_cam.ScreenToWorldPoint(new(0.0f, 0.0f, _nearPlane)) - offset,
 				_cam.ScreenToWorldPoint(new(0.0f, resY, _nearPlane)) - offset,
