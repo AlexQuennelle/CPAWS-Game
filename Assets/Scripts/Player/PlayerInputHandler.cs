@@ -13,7 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
 	[SerializeField]
 	private PlayerLook _playerLook;
 	[SerializeField]
-	private PlayerMove _playerMove;
+	private PlayerJoystickMove _playerMove;
 	[SerializeField]
 	private PlayerPerspectiveHandler _playerPerspectiveHandler;
 
