@@ -17,38 +17,37 @@ public class AnimalHungerState : BehaviourState
 	private bool _stateEnabled = false;
 
 	[SerializeField]
-	private FoodSource _food;
-	private FoodSource _nearestFoodObj;
-
+	private FoodSource _viableFood; // Could probably be changed to a list if an animal has multiple viable food types
 	[SerializeField]
+	private FoodSource _nearestFoodSource;
+
 	private List<FoodSource> _foodSources;
 
 	public override void EnterState(NavMeshAgent agent)
 	{
 		_stateEnabled = true;
 
-		Debug.Log(_food.GetType());
-
-		// Get all food source objects that this animal can eat.
+		// Get all food source objects that this animal can eat. (I was filled with jubilation when i figured this out)
 		foreach (FoodSource food in FindObjectsByType<FoodSource>())
 		{
-			if (food.GetType() == _food.GetType())
+			if (food != null && food.GetType() == _viableFood.GetType())
 			{
-				_foodSources.Add(food);
+				Debug.Log(food);
+				_foodSources.Add(food); // This is throwing a null reference exception error for some reason???? w H Y????
 			}
+			
 		}
 
-
 		// Find nearest food source	
-		_nearestFoodObj = _foodSources[0];
+		/*_nearestFoodSource = _foodSources[0];
 		foreach (FoodSource food in _foodSources)
 		{
 			// Theres gotta be a cleaner implementation than this, surely
-			if(Vector3.Distance(agent.transform.position, food.transform.position) < Vector3.Distance(_nearestFoodObj.transform.position, food.transform.position))
+			if(Vector3.Distance(agent.transform.position, food.transform.position) < Vector3.Distance(_nearestFoodSource.transform.position, food.transform.position))
 			{
-				_nearestFoodObj = food;
+				_nearestFoodSource = food;
 			}
-		}
+		}*/
 	}
 
 	private void Update()
