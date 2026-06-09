@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 7339678190332892919}
   - component: {fileID: 8971074936939139905}
   - component: {fileID: 2470902255332947431}
+  - component: {fileID: 7697688507127435796}
   m_Layer: 0
   m_Name: AnimalPrototype
   m_TagString: Untagged
@@ -371,7 +372,7 @@ Transform:
   m_GameObject: {fileID: 7918577767600826110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77726, y: 1, z: -1.56001}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -524,6 +525,7 @@ MonoBehaviour:
   <Agent>k__BackingField: {fileID: 3222067837884668860}
   _states:
   - {fileID: 2470902255332947431}
+  - {fileID: 7697688507127435796}
   _defaultState: {fileID: 8971074936939139905}
 --- !u!114 &8971074936939139905
 MonoBehaviour:
@@ -554,3 +556,21 @@ MonoBehaviour:
   _wanderRange: 10
   _maxWaitTime: 5
   _minWaitTime: 0
+--- !u!114 &7697688507127435796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918577767600826110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0e7d457707e3540985ab8f418b5851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalHungerState
+  <Priority>k__BackingField: 2
+  _minHunger: 0
+  _maxHunger: 5
+  _currentHunger: 5
+  _food: {fileID: 2226061629104784290, guid: d6552f1da3df0d148a15442406e790f7, type: 3}
+  _foodObjs: []
