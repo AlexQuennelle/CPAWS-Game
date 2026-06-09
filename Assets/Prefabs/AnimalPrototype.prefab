@@ -570,7 +570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalHungerState
   <Priority>k__BackingField: 2
   _minHunger: 0
-  _maxHunger: 5
-  _currentHunger: 5
+  _maxHunger: 50
+  _currentHunger: 50
   _viableFood: {fileID: 2226061629104784290, guid: d6552f1da3df0d148a15442406e790f7, type: 3}
-  _nearestFoodObj: {fileID: 0}
+  _nearestFoodSource: {fileID: 0}
+  _foodSources: []
