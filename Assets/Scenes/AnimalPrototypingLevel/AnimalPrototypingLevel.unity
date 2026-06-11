@@ -449,11 +449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7697688507127435796, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
       propertyPath: _maxHunger
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7697688507127435796, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
       propertyPath: _currentHunger
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7697688507127435796, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
       propertyPath: <Priority>k__BackingField
