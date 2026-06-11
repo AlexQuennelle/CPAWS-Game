@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4064057210892871573}
   - component: {fileID: 1221964873455771490}
   - component: {fileID: 706893372207440805}
-  - component: {fileID: 2226061629104784290}
+  - component: {fileID: -4916058023760799754}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -182,7 +182,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2226061629104784290
+--- !u!114 &-4916058023760799754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7081356697159435934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54fa26d0b4af5ac44b242bbdc588f945, type: 3}
+  m_Script: {fileID: 11500000, guid: 4afa435269ceff14d850d546cd451f60, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoodApple
+  m_EditorClassIdentifier: Assembly-CSharp::FoodSource
   <_value>k__BackingField: 100
