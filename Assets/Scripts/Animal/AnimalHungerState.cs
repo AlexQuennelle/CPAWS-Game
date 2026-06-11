@@ -24,10 +24,7 @@ public class AnimalHungerState : BehaviourState
 	[SerializeField]
 	private FoodSource _viableFood; // Could probably be changed to a list if an animal has multiple viable food types
 	[SerializeField]
-	private FoodSource _nearestFoodSource;
-
-	[SerializeField] // do NOT remove serializefield from this list, it shits itself when you do
-	private List<FoodSource> _foodSources;
+	private FoodSource _nearestFoodSource;	
 
 	private NavMeshAgent _agent;
 
@@ -35,6 +32,7 @@ public class AnimalHungerState : BehaviourState
 	{
 		_stateEnabled = true;
 		_agent = agent;
+		List<FoodSource> _foodSources = new();
 
 		// Get all food source objects that this animal can eat. (I was filled with jubilation when i figured this out)
 		foreach (FoodSource food in FindObjectsByType<FoodSource>())
@@ -82,7 +80,6 @@ public class AnimalHungerState : BehaviourState
 				_currentHunger += _nearestFoodSource._value; // NOM
 				if (_currentHunger > _maxHunger) _currentHunger = _maxHunger;
 
-				_foodSources.Clear();
 				RaiseBehaviourEnd();
 				_stateEnabled = false;
 				_currentEatTime = 0;
