@@ -34,15 +34,9 @@ public class AnimalHungerState : BehaviourState
 		// Find nearest food source	
 		_nearestFoodSource = _foodSources[0];
 
-		// Exclude non-viable food sources
-		foreach (FoodSource food in _foodSources)
-		{
-			if (food.Type != _viableFood)
-			{
-				_foodSources.Remove(food);
-			}	
-		}
-		_nearestFoodSource = _foodSources.OrderByDescending(food => Vector3.Distance(_agent.transform.position, food.transform.position)).Last();
+		_nearestFoodSource = _foodSources.Where(source => source.Type == _viableFood)
+		    .OrderByDescending(food => Vector3.Distance(_agent.transform.position, food.transform.position))
+		    .Last();
 
 		agent.SetDestination(_nearestFoodSource.transform.position);
 	}
