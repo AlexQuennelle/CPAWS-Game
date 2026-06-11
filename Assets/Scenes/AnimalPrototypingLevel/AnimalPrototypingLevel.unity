@@ -407,6 +407,10 @@ PrefabInstance:
       propertyPath: _maxWaitTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2470902255332947431, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
+      propertyPath: _wanderRange
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4542427614516700364, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5905191
@@ -449,11 +453,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7697688507127435796, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
       propertyPath: _maxHunger
-      value: 10
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697688507127435796, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
+      propertyPath: _maxEatTime
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7697688507127435796, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
       propertyPath: _currentHunger
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7697688507127435796, guid: f0addc442a4c1904ca9a378972154b3a, type: 3}
       propertyPath: <Priority>k__BackingField

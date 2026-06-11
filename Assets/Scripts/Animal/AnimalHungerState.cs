@@ -33,18 +33,16 @@ public class AnimalHungerState : BehaviourState
 
 		// Find nearest food source	
 		_nearestFoodSource = _foodSources[0];
+
+		// Exclude non-viable food sources
 		foreach (FoodSource food in _foodSources)
 		{
-			// Check if the animal eats this type of food
-			if (food != null && food._type == _viableFood)
+			if (food.Type != _viableFood)
 			{
-				// Theres gotta be a cleaner implementation than this, surely
-				if (Vector3.Distance(agent.transform.position, food.transform.position) < Vector3.Distance(_nearestFoodSource.transform.position, food.transform.position))
-				{
-					_nearestFoodSource = food;
-				}
-			}		
+				_foodSources.Remove(food);
+			}	
 		}
+		_nearestFoodSource = _foodSources.OrderByDescending(food => Vector3.Distance(_agent.transform.position, food.transform.position)).Last();
 
 		agent.SetDestination(_nearestFoodSource.transform.position);
 	}
@@ -69,12 +67,13 @@ public class AnimalHungerState : BehaviourState
 			_currentEatTime += Time.deltaTime;
 			if(_currentEatTime >= _maxEatTime)
 			{
-				_currentHunger += _nearestFoodSource._value; // NOM
+				Debug.Log("Finished Eating");
+				_currentHunger += _nearestFoodSource.Value; // NOM
 				if (_currentHunger > _maxHunger) _currentHunger = _maxHunger;
 
-				RaiseBehaviourEnd();
-				_stateEnabled = false;
 				_currentEatTime = 0;
+				_stateEnabled = false;
+				RaiseBehaviourEnd();							
 			}				
 		}		
 	}

@@ -8,8 +8,8 @@ public enum FoodType
 public class FoodSource : MonoBehaviour
 {
 	[field: SerializeField]
-	public int _value { get; private set; }
+	public int Value { get; private set; }
 
 	[field: SerializeField]
-	public FoodType _type { get; private set; }
+	public FoodType Type { get; private set; }
 }

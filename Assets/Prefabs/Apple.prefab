@@ -194,4 +194,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afa435269ceff14d850d546cd451f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodSource
-  <_value>k__BackingField: 100
+  <Value>k__BackingField: 100
+  <Type>k__BackingField: 0
