@@ -36,10 +36,10 @@ public class CameraSensor : MonoBehaviour
 		{
 			target.CalculateRect(_cam);
 		}
-		Vector3 focalPoint =
-			transform.position + (transform.forward * _cam.focusDistance);
 		if (_targets.Count > 0)
 		{
+			Vector3 focalPoint =
+				transform.position + (transform.forward * _cam.focusDistance);
 			_targetRect.gameObject.SetActive(true);
 			_targets.Sort(
 					(a, b) => (int)(
