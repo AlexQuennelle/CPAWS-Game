@@ -572,6 +572,7 @@ MonoBehaviour:
   _minHunger: 0
   _maxHunger: 50
   _currentHunger: 50
+  _maxEatTime: 3
   _viableFood: {fileID: 2226061629104784290, guid: d6552f1da3df0d148a15442406e790f7, type: 3}
   _nearestFoodSource: {fileID: 0}
   _foodSources: []

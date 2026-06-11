@@ -14,6 +14,11 @@ public class AnimalHungerState : BehaviourState
 	[SerializeField]
 	private float _currentHunger;
 
+	[SerializeField]
+	private float _maxEatTime; // time it takes the animal to eat something
+	private float _currentEatTime = 0;
+
+
 	private bool _stateEnabled = false;
 
 	[SerializeField]
@@ -69,12 +74,19 @@ public class AnimalHungerState : BehaviourState
 
 		// Execute munch logic upon reaching food source
 		if(_agent.remainingDistance <= _agent.stoppingDistance)
-		{
-			_currentHunger += _nearestFoodSource._value;
-			if (_currentHunger > _maxHunger) _currentHunger = _maxHunger;
-			_foodSources.Clear();
-			RaiseBehaviourEnd();
-			_stateEnabled = false;		
+		{			
+			_agent.SetDestination(_agent.transform.position);
+			_currentEatTime += Time.deltaTime;
+			if(_currentEatTime >= _maxEatTime)
+			{
+				_currentHunger += _nearestFoodSource._value; // NOM
+				if (_currentHunger > _maxHunger) _currentHunger = _maxHunger;
+
+				_foodSources.Clear();
+				RaiseBehaviourEnd();
+				_stateEnabled = false;
+				_currentEatTime = 0;
+			}				
 		}		
 	}
 }
