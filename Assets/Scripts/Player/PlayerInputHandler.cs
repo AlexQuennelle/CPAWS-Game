@@ -41,7 +41,7 @@ public class PlayerInputHandler : MonoBehaviour
 
 	private void OnChangeCamera(InputAction.CallbackContext ctx)
 	{
-		_playerPerspectiveHandler.IsFirstPerson = !_playerPerspectiveHandler.IsFirstPerson;
+		_playerPerspectiveHandler.IsPhotoMode = !_playerPerspectiveHandler.IsPhotoMode;
 	}
 
 	private void OnMoveStart(InputAction.CallbackContext ctx)
