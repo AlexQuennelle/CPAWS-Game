@@ -22,12 +22,16 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 			{
 				_playerLook.MaxVerticalLook = 80f;
 				_playerLook.MinVerticalLook = -80f;
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
 			}
 			else
 			{
 				_playerLook.MaxVerticalLook = 70f;
 				_playerLook.MinVerticalLook = -55f;
 				_playerLook.HandleLook(new Vector2(0, 0));
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
 			}
 			OnPerspectiveChange?.Invoke(this);
 		}

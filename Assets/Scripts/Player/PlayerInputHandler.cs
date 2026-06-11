@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +18,8 @@ public class PlayerInputHandler : MonoBehaviour
 	private PlayerJoystickMove _playerMove;
 	[SerializeField]
 	private PlayerPerspectiveHandler _playerPerspectiveHandler;
+	[SerializeField]
+	private CameraSensor _cameraSensor;
 
 	private void OnEnable()
 	{
@@ -23,6 +27,7 @@ public class PlayerInputHandler : MonoBehaviour
 		_playerInput.actions.FindAction("ChangeCamera").performed += OnChangeCamera;
 		_playerInput.actions.FindAction("Move").performed += OnMoveStart;
 		_playerInput.actions.FindAction("Move").canceled += OnMoveEnd;
+		_playerInput.actions.FindAction("TakePicture").performed += HandleTakePicture;
 	}
 
 	private void OnDisable()
@@ -31,6 +36,7 @@ public class PlayerInputHandler : MonoBehaviour
 		_playerInput.actions.FindAction("ChangeCamera").performed -= OnChangeCamera;
 		_playerInput.actions.FindAction("Move").performed -= OnMoveStart;
 		_playerInput.actions.FindAction("Move").canceled -= OnMoveEnd;
+		_playerInput.actions.FindAction("TakePicture").performed -= HandleTakePicture;
 	}
 
 	private void OnLook(InputAction.CallbackContext ctx)
@@ -56,5 +62,12 @@ public class PlayerInputHandler : MonoBehaviour
 	private void OnMoveEnd(InputAction.CallbackContext ctx)
 	{
 		_playerMove.StopMove();
+	}
+
+	private void HandleTakePicture(InputAction.CallbackContext ctx)
+	{
+		if (!_playerPerspectiveHandler.IsPhotoMode) return;
+
+		_cameraSensor.TakePicture();
 	}
 }

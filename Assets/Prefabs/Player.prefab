@@ -192,6 +192,7 @@ MonoBehaviour:
   _playerLook: {fileID: 2295726039805448584}
   _playerMove: {fileID: 6934874903615552632}
   _playerPerspectiveHandler: {fileID: 7838760146035666931}
+  _cameraSensor: {fileID: 6593094239846621978}
 --- !u!54 &5068150109211963204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -515,6 +516,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 891897951524723830, guid: 7ab46eb357c79ad7da450c0ffa4965fc, type: 3}
   m_PrefabInstance: {fileID: 3893724669604190495}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6593094239846621978 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7887537644020021765, guid: 7ab46eb357c79ad7da450c0ffa4965fc, type: 3}
+  m_PrefabInstance: {fileID: 3893724669604190495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d006981e2a953f5b317c9165854f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestCameraSensor
 --- !u!1001 &8335386777294459651
 PrefabInstance:
   m_ObjectHideFlags: 0
