@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DisableChildInPhotoMode : MonoBehaviour
 {
-	[Header("WARNING: Do not use this component to disable the gameobject that it is placed on. It will be unable to re-enable itself.")]
+	[Header("WARNING: Do not use this component to disable the gameobject that it is placed on.\nIt will be unable to re-enable itself.\n")]
 	[SerializeField]
 	private PlayerPerspectiveHandler _playerPerspectiveHandler;
 

@@ -42,10 +42,14 @@ public class PlayerInputHandler : MonoBehaviour
 	private void OnChangeCamera(InputAction.CallbackContext ctx)
 	{
 		_playerPerspectiveHandler.IsPhotoMode = !_playerPerspectiveHandler.IsPhotoMode;
+
+		_playerMove.StopMove();
 	}
 
 	private void OnMoveStart(InputAction.CallbackContext ctx)
 	{
+		if (_playerPerspectiveHandler.IsPhotoMode) return;
+
 		_playerMove.HandleMove(ctx.ReadValue<Vector2>());
 	}
 
