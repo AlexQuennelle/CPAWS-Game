@@ -2,6 +2,7 @@ using UnityEngine;
 
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class CameraSensor : MonoBehaviour
 {
@@ -20,11 +21,44 @@ public class CameraSensor : MonoBehaviour
 	[SerializeField]
 	private RenderTexture _texture;
 
+	[SerializeField]
+	private RectTransform _targetRect;
+	[SerializeField]
 	private List<CameraTarget> _targets = new();
 
 	private void Start()
 	{
 		RecalculateSensor();
+	}
+	private void Update()
+	{
+		foreach (CameraTarget target in _targets)
+		{
+			target.CalculateRect(_cam);
+		}
+		Vector3 focalPoint =
+			transform.position + (transform.forward * _cam.focusDistance);
+		if (_targets.Count > 0)
+		{
+			_targetRect.gameObject.SetActive(true);
+			_targets.Sort(
+					(a, b) => (int)(
+						Vector3.Distance(focalPoint, a.transform.position)
+						- Vector3.Distance(focalPoint, b.transform.position)));
+
+			RectTransform parent =
+				_targetRect.parent.transform as RectTransform;
+			Rect targetBounds = _targets[0].Bounds;
+			_targetRect.sizeDelta =
+				targetBounds.size / _cam.pixelRect.size * parent.rect.size;
+			_targetRect.anchoredPosition =
+				(targetBounds.position / _cam.pixelRect.size * parent.rect.size)
+				+ (_targetRect.sizeDelta / 2.0f);
+		}
+		else
+		{
+			_targetRect.gameObject.SetActive(false);
+		}
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -49,7 +83,7 @@ public class CameraSensor : MonoBehaviour
 	///   </para>
 	///   <para>
 	///     Score is calculated by accumulating the individual score values
-	///     contributed by any <see cref="CameraTarget"> objects registered as
+	///     contributed by any <see cref="CameraTarget"/> objects registered as
 	///     "in frame" by the camera frustum.
 	///   </para>
 	/// </summary>
@@ -115,6 +149,12 @@ public class CameraSensor : MonoBehaviour
 			_frustumMesh.RecalculateNormals();
 			_frustumCol.sharedMesh = _frustumMesh;
 		}
+	}
+	void OnDrawGizmos()
+	{
+		Gizmos.DrawSphere(transform.position, 0.5f);
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(_cam.transform.position + (_cam.transform.forward * _cam.focusDistance), 1.0f);
 	}
 }
 
