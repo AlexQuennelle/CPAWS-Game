@@ -67,7 +67,6 @@ public class AnimalHungerState : BehaviourState
 			_currentEatTime += Time.deltaTime;
 			if(_currentEatTime >= _maxEatTime)
 			{
-				Debug.Log("Finished Eating");
 				_currentHunger += _nearestFoodSource.Value; // NOM
 				if (_currentHunger > _maxHunger) _currentHunger = _maxHunger;
 
