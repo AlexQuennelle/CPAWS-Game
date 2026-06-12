@@ -18,8 +18,6 @@ public class AnimalWanderState : BehaviourState
 
 	private NavMeshAgent _agent;
 
-
-
 	public void OnEnable()
 	{
 		_waitTime = Random.Range(_minWaitTime, _maxWaitTime);
