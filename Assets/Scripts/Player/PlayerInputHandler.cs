@@ -23,24 +23,26 @@ public class PlayerInputHandler : MonoBehaviour
 
 	private void OnEnable()
 	{
-		_playerInput.actions.FindAction("Look").performed += OnLook;
-		_playerInput.actions.FindAction("ChangeCamera").performed += OnChangeCamera;
-		_playerInput.actions.FindAction("Move").performed += OnMoveStart;
-		_playerInput.actions.FindAction("Move").canceled += OnMoveEnd;
-		_playerInput.actions.FindAction("TakePicture").performed += HandleTakePicture;
+		InputSystem.actions.FindAction("Look").performed += OnLook;
+		InputSystem.actions.FindAction("ChangeCamera").performed += OnChangeCamera;
+		InputSystem.actions.FindAction("Move").performed += OnMoveStart;
+		InputSystem.actions.FindAction("Move").canceled += OnMoveEnd;
+		InputSystem.actions.FindAction("TakePicture").performed += HandleTakePicture;
 	}
 
 	private void OnDisable()
 	{
-		_playerInput.actions.FindAction("Look").performed -= OnLook;
-		_playerInput.actions.FindAction("ChangeCamera").performed -= OnChangeCamera;
-		_playerInput.actions.FindAction("Move").performed -= OnMoveStart;
-		_playerInput.actions.FindAction("Move").canceled -= OnMoveEnd;
-		_playerInput.actions.FindAction("TakePicture").performed -= HandleTakePicture;
+		InputSystem.actions.FindAction("Look").performed -= OnLook;
+		InputSystem.actions.FindAction("ChangeCamera").performed -= OnChangeCamera;
+		InputSystem.actions.FindAction("Move").performed -= OnMoveStart;
+		InputSystem.actions.FindAction("Move").canceled -= OnMoveEnd;
+		InputSystem.actions.FindAction("TakePicture").performed -= HandleTakePicture;
 	}
 
 	private void OnLook(InputAction.CallbackContext ctx)
 	{
+		if (!_playerPerspectiveHandler.IsPhotoMode) return;
+
 		Vector2 lookDelta = ctx.ReadValue<Vector2>() * _sensitivity;
 		_playerLook.HandleLook(lookDelta);
 	}

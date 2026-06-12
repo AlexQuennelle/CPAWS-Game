@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5010973229758479628}
-  - component: {fileID: 3203618717963415006}
   m_Layer: 0
   m_Name: Yaw
   m_TagString: Untagged
@@ -34,21 +33,6 @@ Transform:
   - {fileID: 3791868628670690726}
   m_Father: {fileID: 430499875604166551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3203618717963415006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4414925116375779830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5fcd3d3f75a8534f802461ef5ececfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DisableChildInPhotoMode
-  _playerPerspectiveHandler: {fileID: 7838760146035666931}
-  _objectToToggle: {fileID: 9181810280732225106}
-  _invert: 0
 --- !u!1 &5822149970062649803
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +247,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPerspectiveHandler
   _playerLook: {fileID: 2295726039805448584}
+  _objectsToToggle:
+  - <_object>k__BackingField: {fileID: 9181810280732225106}
+    <_enabledInPhotoMode>k__BackingField: 0
 --- !u!195 &2325575004615388158
 NavMeshAgent:
   m_ObjectHideFlags: 0

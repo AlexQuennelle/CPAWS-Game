@@ -1,15 +1,27 @@
 using System;
-
-using Unity.Cinemachine;
+using System.Collections.Generic;
 
 using UnityEngine;
 
 public class PlayerPerspectiveHandler : MonoBehaviour
 {
+	[Serializable]
+	class PhotoModeToggleable
+	{
+		[field: SerializeField, Tooltip("Object to be toggled.")]
+		public GameObject _object { get; private set; }
+
+		[field: SerializeField, Tooltip("Whether to hide or show the object in photo mode.")]
+		public bool _enabledInPhotoMode { get; private set; } = false;
+	}
+
 	public event Action<PlayerPerspectiveHandler> OnPerspectiveChange;
 
 	[SerializeField]
 	private PlayerLook _playerLook;
+
+	[SerializeField]
+	private List<PhotoModeToggleable> _objectsToToggle;
 
 	private bool _isPhotoMode = false;
 	public bool IsPhotoMode
@@ -24,6 +36,7 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 				_playerLook.MinVerticalLook = -80f;
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
+				foreach (var toggleable in _objectsToToggle) { toggleable._object.SetActive(toggleable._enabledInPhotoMode); }
 			}
 			else
 			{
@@ -32,6 +45,7 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 				_playerLook.HandleLook(new Vector2(0, 0));
 				Cursor.lockState = CursorLockMode.None;
 				Cursor.visible = true;
+				foreach (var toggleable in _objectsToToggle) { toggleable._object.SetActive(!toggleable._enabledInPhotoMode); }
 			}
 			OnPerspectiveChange?.Invoke(this);
 		}

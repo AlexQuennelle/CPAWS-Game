@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: its "p" to switch to photo mode., it stands for piblic
+  m_text: P to switch to photo mode
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -749,17 +749,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &566862680 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7838760146035666931, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
-  m_PrefabInstance: {fileID: 1511492519}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e4727da0bcdb24c9a091fcad3ddf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerPerspectiveHandler
 --- !u!1 &725084197
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,6 +964,18 @@ PrefabInstance:
       propertyPath: _photoModeUI
       value: 
       objectReference: {fileID: 1239075754}
+    - target: {fileID: 7838760146035666931, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _objectsToToggle.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7838760146035666931, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _objectsToToggle.Array.data[1].<_object>k__BackingField
+      value: 
+      objectReference: {fileID: 1239075754}
+    - target: {fileID: 7838760146035666931, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _objectsToToggle.Array.data[1].<_enabledInPhotoMode>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1067,7 +1068,6 @@ GameObject:
   - component: {fileID: 1885211565}
   - component: {fileID: 1885211564}
   - component: {fileID: 1885211563}
-  - component: {fileID: 1885211567}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1160,21 +1160,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1885211567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885211562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5fcd3d3f75a8534f802461ef5ececfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DisableChildInPhotoMode
-  _playerPerspectiveHandler: {fileID: 566862680}
-  _objectToToggle: {fileID: 1239075754}
-  _invert: 1
 --- !u!1 &2041852285
 GameObject:
   m_ObjectHideFlags: 0
