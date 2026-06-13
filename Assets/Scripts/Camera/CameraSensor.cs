@@ -6,6 +6,8 @@ using System.Linq;
 
 public class CameraSensor : MonoBehaviour
 {
+	public event Action<CameraSensor, PictureInfo> OnPictureTaken;
+
 	[SerializeField]
 	private Camera _cam;
 
@@ -108,7 +110,11 @@ public class CameraSensor : MonoBehaviour
 		RenderTexture.active = _texture;
 		pic.ReadPixels(new Rect(0, 0, _texture.width, _texture.height), 0, 0);
 		pic.Apply();
-		return new(pic, (int)score, subjects);
+
+		PictureInfo info = new(pic, (int)score, subjects);
+
+		OnPictureTaken?.Invoke(this, info);
+		return info;
 	}
 
 	/// <summary>
