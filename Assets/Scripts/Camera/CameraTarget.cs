@@ -82,7 +82,8 @@ public class CameraTarget : MonoBehaviour
 									   center.z + extents.z)),
 		};
 		Vector3 topRight = new();
-		Vector3 bottomLeft = new(float.MaxValue, float.MaxValue, float.MaxValue);
+		Vector3 bottomLeft =
+			new(float.MaxValue, float.MaxValue, float.MaxValue);
 		foreach (Vector3 point in screenSpacePoints)
 		{
 			topRight.x = Mathf.Max(topRight.x, point.x);

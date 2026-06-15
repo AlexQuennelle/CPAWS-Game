@@ -24,19 +24,23 @@ public class PlayerInputHandler : MonoBehaviour
 	private void OnEnable()
 	{
 		InputSystem.actions.FindAction("Look").performed += OnLook;
-		InputSystem.actions.FindAction("ChangeCamera").performed += OnChangeCamera;
+		InputSystem.actions.FindAction("ChangeCamera").performed
+			+= OnChangeCamera;
 		InputSystem.actions.FindAction("Move").performed += OnMoveStart;
 		InputSystem.actions.FindAction("Move").canceled += OnMoveEnd;
-		InputSystem.actions.FindAction("TakePicture").performed += HandleTakePicture;
+		InputSystem.actions.FindAction("TakePicture").performed
+			+= HandleTakePicture;
 	}
 
 	private void OnDisable()
 	{
 		InputSystem.actions.FindAction("Look").performed -= OnLook;
-		InputSystem.actions.FindAction("ChangeCamera").performed -= OnChangeCamera;
+		InputSystem.actions.FindAction("ChangeCamera").performed
+			-= OnChangeCamera;
 		InputSystem.actions.FindAction("Move").performed -= OnMoveStart;
 		InputSystem.actions.FindAction("Move").canceled -= OnMoveEnd;
-		InputSystem.actions.FindAction("TakePicture").performed -= HandleTakePicture;
+		InputSystem.actions.FindAction("TakePicture").performed
+			-= HandleTakePicture;
 	}
 
 	private void OnLook(InputAction.CallbackContext ctx)
@@ -49,7 +53,8 @@ public class PlayerInputHandler : MonoBehaviour
 
 	private void OnChangeCamera(InputAction.CallbackContext ctx)
 	{
-		_playerPerspectiveHandler.IsPhotoMode = !_playerPerspectiveHandler.IsPhotoMode;
+		_playerPerspectiveHandler.IsPhotoMode =
+			!_playerPerspectiveHandler.IsPhotoMode;
 
 		_playerMove.StopMove();
 	}

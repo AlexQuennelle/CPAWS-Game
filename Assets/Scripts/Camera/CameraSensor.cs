@@ -1,7 +1,7 @@
-using UnityEngine;
-
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+
+using UnityEngine;
 
 public class CameraSensor : MonoBehaviour
 {
@@ -163,7 +163,9 @@ public class CameraSensor : MonoBehaviour
 	{
 		Gizmos.DrawSphere(transform.position, 0.5f);
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(_cam.transform.position + (_cam.transform.forward * _cam.focusDistance), 1.0f);
+		Gizmos.DrawWireSphere(
+				_cam.transform.position
+				+ (_cam.transform.forward * _cam.focusDistance), 1.0f);
 	}
 }
 
