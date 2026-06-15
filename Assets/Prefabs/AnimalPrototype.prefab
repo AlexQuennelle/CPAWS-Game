@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1067669862570296668}
   - component: {fileID: 8408333407566970330}
   m_Layer: 0
-  m_Name: re
+  m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4660867938672413321}
   - component: {fileID: 3432049500780219978}
   m_Layer: 0
-  m_Name: Sphere (1)
+  m_Name: RightEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 8920468563122859857}
   - component: {fileID: 325384653278846413}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: LeftEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 8971074936939139905}
   - component: {fileID: 2470902255332947431}
   - component: {fileID: 7697688507127435796}
+  - component: {fileID: 4740678846191812824}
   - component: {fileID: 7464335538469089}
   m_Layer: 0
   m_Name: AnimalPrototype
@@ -527,6 +528,7 @@ MonoBehaviour:
   _states:
   - {fileID: 2470902255332947431}
   - {fileID: 7697688507127435796}
+  - {fileID: 4740678846191812824}
   _defaultState: {fileID: 8971074936939139905}
 --- !u!114 &8971074936939139905
 MonoBehaviour:
@@ -574,6 +576,21 @@ MonoBehaviour:
   _currentHunger: 50
   _maxEatTime: 3
   _viableFood: 0
+--- !u!114 &4740678846191812824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918577767600826110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765638d090daf5f419c055e34121cbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalFleeState
+  <Priority>k__BackingField: 10
+  _fleeDistance: 10
+  _fearTolerance: 10
 --- !u!135 &7464335538469089
 SphereCollider:
   m_ObjectHideFlags: 0

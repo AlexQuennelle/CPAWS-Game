@@ -3,30 +3,33 @@ using UnityEngine.AI;
 
 public class AnimalFleeState : BehaviourState
 {
-
 	private NavMeshAgent _agent;
-	private GameObject _player;
+	private GameObject _threat;
 
 	private bool _stateEnabled = false;
 
 	[SerializeField]
 	private float _fleeDistance;
+	[SerializeField]
+	private int _fearTolerance;
 
 	public override void EnterState(NavMeshAgent agent)
 	{
 		_stateEnabled = true;
-		Debug.Log("State Entered");
 		_agent = agent;
 
-		if (_player != null) _agent.SetDestination(GetFleePosition(_player));
+		if (_threat != null) _agent.SetDestination(GetFleePosition(_threat));
 	}
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider collider)
 	{
-		if (other.gameObject.name == "Moose") // change this later, string matching bad or somethn
+		if (collider.gameObject.GetComponent<ScaryComponent>() != null) // change this later, string matching bad or somethn
 		{
-			_player = other.gameObject;
-			RaiseRequestEnter();
+			if (collider.gameObject.GetComponent<ScaryComponent>().Scariness > _fearTolerance)
+			{
+				_threat = collider.gameObject;
+				RaiseRequestEnter();
+			}
 		}
 	}
 
@@ -43,14 +46,11 @@ public class AnimalFleeState : BehaviourState
 		}
 	}
 
-	Vector3 GetFleePosition(GameObject player) // how the hell am i gonna get the player
+	// Calculate a posiion far away in the opposite direction of the threat
+	Vector3 GetFleePosition(GameObject threat)
 	{
-		// Calculate a posiion far away in the opposite direction of the player
-		// How the hell do i calculate direction
-		// help me
-
 		Vector3 currentPosition = transform.position;
-		Vector3 heading = transform.position - player.transform.position;
+		Vector3 heading = currentPosition - threat.transform.position;
 		float distance = heading.magnitude;
 		Vector3 direction = heading / distance;
 
