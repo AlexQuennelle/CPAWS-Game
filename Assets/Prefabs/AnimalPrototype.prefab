@@ -589,6 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalFleeState
   <Priority>k__BackingField: 10
+  _detectionSphere: {fileID: 7464335538469089}
   _fleeDistance: 10
   _fearTolerance: 10
 --- !u!135 &7464335538469089

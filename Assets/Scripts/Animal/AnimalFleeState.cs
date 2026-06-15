@@ -9,6 +9,8 @@ public class AnimalFleeState : BehaviourState
 	private bool _stateEnabled = false;
 
 	[SerializeField]
+	private SphereCollider _detectionSphere;
+	[SerializeField]
 	private float _fleeDistance;
 	[SerializeField]
 	private int _fearTolerance;
@@ -23,7 +25,7 @@ public class AnimalFleeState : BehaviourState
 
 	private void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.GetComponent<ScaryComponent>() != null) // change this later, string matching bad or somethn
+		if (collider.gameObject.GetComponent<ScaryComponent>() != null)
 		{
 			if (collider.gameObject.GetComponent<ScaryComponent>().Scariness > _fearTolerance)
 			{
@@ -41,14 +43,24 @@ public class AnimalFleeState : BehaviourState
 
 		if (_agent.remainingDistance <= _agent.stoppingDistance)
 		{
-			_stateEnabled = false;
-			RaiseBehaviourEnd();
+			// Keep fleeing if the threat is within the detection radius
+			if (Vector3.Distance(transform.position, _threat.transform.position) < _detectionSphere.radius)
+			{
+				_agent.SetDestination(GetFleePosition(_threat));
+			}
+			else
+			{
+				_stateEnabled = false;
+				RaiseBehaviourEnd();
+			}
 		}
 	}
 
-	// Calculate a posiion far away in the opposite direction of the threat
+	// Calculate a posiion far away from the threat
 	Vector3 GetFleePosition(GameObject threat)
 	{
+		// TO-DO: Currently the animal only calculates positions directly opposite the threat
+		// This means they get cornered and stuck very easily. Need to find a way around this
 		Vector3 currentPosition = transform.position;
 		Vector3 heading = currentPosition - threat.transform.position;
 		float distance = heading.magnitude;
