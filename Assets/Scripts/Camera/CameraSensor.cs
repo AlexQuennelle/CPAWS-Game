@@ -1,7 +1,7 @@
-using UnityEngine;
-
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+
+using UnityEngine;
 
 public class CameraSensor : MonoBehaviour
 {
@@ -22,11 +22,44 @@ public class CameraSensor : MonoBehaviour
 	[SerializeField]
 	private RenderTexture _texture;
 
+	[SerializeField]
+	private RectTransform _targetRect;
+	[SerializeField]
 	private List<CameraTarget> _targets = new();
 
 	private void Start()
 	{
 		RecalculateSensor();
+	}
+	private void Update()
+	{
+		foreach (CameraTarget target in _targets)
+		{
+			target.CalculateRect(_cam);
+		}
+		if (_targets.Count > 0)
+		{
+			Vector3 focalPoint =
+				transform.position + (transform.forward * _cam.focusDistance);
+			_targetRect.gameObject.SetActive(true);
+			_targets.Sort(
+					(a, b) => (int)(
+						Vector3.Distance(focalPoint, a.transform.position)
+						- Vector3.Distance(focalPoint, b.transform.position)));
+
+			RectTransform parent =
+				_targetRect.parent.transform as RectTransform;
+			Rect targetBounds = _targets[0].Bounds;
+			_targetRect.sizeDelta =
+				targetBounds.size / _cam.pixelRect.size * parent.rect.size;
+			_targetRect.anchoredPosition =
+				(targetBounds.position / _cam.pixelRect.size * parent.rect.size)
+				+ (_targetRect.sizeDelta / 2.0f);
+		}
+		else
+		{
+			_targetRect.gameObject.SetActive(false);
+		}
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -51,11 +84,14 @@ public class CameraSensor : MonoBehaviour
 	///   </para>
 	///   <para>
 	///     Score is calculated by accumulating the individual score values
-	///     contributed by any <see cref="CameraTarget"> objects registered as
+	///     contributed by any <see cref="CameraTarget"/> objects registered as
 	///     "in frame" by the camera frustum.
 	///   </para>
+	///   <para>
+	///     Emits the event <see cref="OnPictureTaken"/>.
+	///   </para>
 	/// </summary>
-	public PictureInfo TakePicture()
+	public void TakePicture()
 	{
 		float score = 0.0f;
 		List<TargetInfo> subjects = new();
@@ -70,17 +106,18 @@ public class CameraSensor : MonoBehaviour
 		}
 		// Convoluted process to convert a RenderTexture to a Texture2D
 		// without bungling the texture format.
-		_cam.Render();
 		Texture2D pic = new(_texture.width, _texture.height);
 		pic.Reinitialize(pic.width, pic.height, _texture.graphicsFormat, true);
+		RenderTexture prev = RenderTexture.active;
 		RenderTexture.active = _texture;
 		pic.ReadPixels(new Rect(0, 0, _texture.width, _texture.height), 0, 0);
 		pic.Apply();
+		RenderTexture.active = prev;
 
 		PictureInfo info = new(pic, (int)score, subjects);
 
 		OnPictureTaken?.Invoke(this, info);
-		return info;
+		// return info;
 	}
 
 	/// <summary>
@@ -121,6 +158,14 @@ public class CameraSensor : MonoBehaviour
 			_frustumMesh.RecalculateNormals();
 			_frustumCol.sharedMesh = _frustumMesh;
 		}
+	}
+	void OnDrawGizmos()
+	{
+		Gizmos.DrawSphere(transform.position, 0.5f);
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(
+				_cam.transform.position
+				+ (_cam.transform.forward * _cam.focusDistance), 1.0f);
 	}
 }
 

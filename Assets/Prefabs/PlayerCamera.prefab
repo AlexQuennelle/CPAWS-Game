@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7887537644020021765}
   m_Layer: 0
   m_Name: PlayerCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
-  m_AllowXRRendering: 1
+  m_AllowXRRendering: 0
   m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -169,5 +169,5 @@ MonoBehaviour:
   _farPlane: 50
   _frustumCol: {fileID: 3875291590522105313}
   _texture: {fileID: 8600000, guid: 6d1eaf83d5b4a2a29b65fa4ea58b95bf, type: 2}
-  _pictures: []
+  _targetRect: {fileID: 0}
   _targets: []
