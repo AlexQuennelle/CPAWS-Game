@@ -2,7 +2,6 @@ using UnityEngine;
 
 using System.Collections.Generic;
 using System;
-using System.Linq;
 
 public class CameraSensor : MonoBehaviour
 {
@@ -88,6 +87,9 @@ public class CameraSensor : MonoBehaviour
 	///     contributed by any <see cref="CameraTarget"/> objects registered as
 	///     "in frame" by the camera frustum.
 	///   </para>
+	///   <para>
+	///     Emits the event <see cref="OnPictureTaken"/>.
+	///   </para>
 	/// </summary>
 	public PictureInfo TakePicture()
 	{
@@ -104,12 +106,13 @@ public class CameraSensor : MonoBehaviour
 		}
 		// Convoluted process to convert a RenderTexture to a Texture2D
 		// without bungling the texture format.
-		_cam.Render();
 		Texture2D pic = new(_texture.width, _texture.height);
 		pic.Reinitialize(pic.width, pic.height, _texture.graphicsFormat, true);
+		RenderTexture prev = RenderTexture.active;
 		RenderTexture.active = _texture;
 		pic.ReadPixels(new Rect(0, 0, _texture.width, _texture.height), 0, 0);
 		pic.Apply();
+		RenderTexture.active = prev;
 
 		PictureInfo info = new(pic, (int)score, subjects);
 
