@@ -13,7 +13,7 @@ public class TestCameraController : MonoBehaviour
 	void Start()
 	{
 		_lookAction = InputSystem.actions.FindAction("Look");
-		Cursor.lockState = CursorLockMode.Locked;
+		// Cursor.lockState = CursorLockMode.Locked;
 		InputSystem.actions.FindAction("Attack").performed += OnAttack;
 	}
 
@@ -29,7 +29,7 @@ public class TestCameraController : MonoBehaviour
 		if (_cam == null)
 			return;
 
-		PictureInfo pic = _cam.TakePicture();
-		Debug.Log($"Picture worth {pic.Score} taken!");
+		// PictureInfo pic = _cam.TakePicture();
+		// Debug.Log($"Picture worth {pic.Score} taken!");
 	}
 }

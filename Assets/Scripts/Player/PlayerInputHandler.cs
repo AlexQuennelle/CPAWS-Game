@@ -70,6 +70,6 @@ public class PlayerInputHandler : MonoBehaviour
 	{
 		if (!_playerPerspectiveHandler.IsPhotoMode) return;
 
-		_ = _cameraSensor.TakePicture();
+		_cameraSensor.TakePicture();
 	}
 }

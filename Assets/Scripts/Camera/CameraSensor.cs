@@ -91,7 +91,7 @@ public class CameraSensor : MonoBehaviour
 	///     Emits the event <see cref="OnPictureTaken"/>.
 	///   </para>
 	/// </summary>
-	public PictureInfo TakePicture()
+	public void TakePicture()
 	{
 		float score = 0.0f;
 		List<TargetInfo> subjects = new();
@@ -117,7 +117,7 @@ public class CameraSensor : MonoBehaviour
 		PictureInfo info = new(pic, (int)score, subjects);
 
 		OnPictureTaken?.Invoke(this, info);
-		return info;
+		// return info;
 	}
 
 	/// <summary>
