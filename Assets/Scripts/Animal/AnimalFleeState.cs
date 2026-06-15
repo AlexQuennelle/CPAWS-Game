@@ -5,19 +5,20 @@ public class AnimalFleeState : BehaviourState
 {
 
 	private NavMeshAgent _agent;
-
+	private GameObject _player;
 
 	public override void EnterState(NavMeshAgent agent)
 	{
 		_agent = agent;
-		_agent.SetDestination(GetFleePosition());
+		if (_player != null) _agent.SetDestination(GetFleePosition(_player));
 	}
+
 
 	// Update is called once per frame
 	void Update()
-    {
-        
-    }
+	{
+
+	}
 
 	Vector3 GetFleePosition(GameObject player) // how the hell am i gonna get the player
 	{

@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 8971074936939139905}
   - component: {fileID: 2470902255332947431}
   - component: {fileID: 7697688507127435796}
+  - component: {fileID: 7464335538469089}
   m_Layer: 0
   m_Name: AnimalPrototype
   m_TagString: Untagged
@@ -569,10 +570,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalHungerState
   <Priority>k__BackingField: 2
-  _minHunger: 0
   _maxHunger: 50
   _currentHunger: 50
   _maxEatTime: 3
-  _viableFood: {fileID: 2226061629104784290, guid: d6552f1da3df0d148a15442406e790f7, type: 3}
-  _nearestFoodSource: {fileID: 0}
-  _foodSources: []
+  _viableFood: 0
+--- !u!135 &7464335538469089
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918577767600826110}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6
+  m_Center: {x: 0, y: 0, z: 0}
