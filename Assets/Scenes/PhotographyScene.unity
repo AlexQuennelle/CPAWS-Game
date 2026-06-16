@@ -256,6 +256,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35227941}
   m_CullTransparentMesh: 1
+--- !u!1 &94973220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6153215205650116951, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+  m_PrefabInstance: {fileID: 1511492519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &94973222 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 2325575004615388158, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+  m_PrefabInstance: {fileID: 1511492519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &94973228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94973220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee84c332058c82c5bb37d270edcfae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTouchMove
+  _agent: {fileID: 94973222}
 --- !u!114 &144071220 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6593094239846621978, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
@@ -863,7 +886,7 @@ GameObject:
   - component: {fileID: 725084200}
   - component: {fileID: 725084199}
   - component: {fileID: 725084198}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1366,8 +1389,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _playerInput
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _actions.m_Id
+      value: 1552e9ab-4d17-4b5a-b3c3-567a3f022f4e
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _actions.m_Name
+      value: Actions
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _playerTouchMove
+      value: 
+      objectReference: {fileID: 94973228}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _groundMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Id
+      value: a4fdf956-3b7b-4531-8002-740a2450ada8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Name
+      value: Default
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Actions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Bindings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Actions.Array.data[0].m_Id
+      value: e667dc1b-dd7d-4ceb-8bfb-30ae3062a79d
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Bindings.Array.data[0].m_Id
+      value: 6ca6c86f-d9cd-4f8b-a708-1993975a76f6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Actions.Array.data[0].m_Name
+      value: New action
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Actions.Array.data[0].m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Bindings.Array.data[0].m_Action
+      value: New action
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _defaultActionMap.m_Actions.Array.data[0].m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 6153215205650116951, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153215205650116951, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6593094239846621978, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
@@ -1381,6 +1468,10 @@ PrefabInstance:
     - target: {fileID: 6804988096401570758, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
       propertyPath: m_LocalPosition.z
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7744379401404656194, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 7838760146035666931, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
       propertyPath: _photoModeUI
@@ -1417,7 +1508,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6153215205650116951, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 94973228}
   m_SourcePrefab: {fileID: 100100000, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
 --- !u!1 &1562907563
 GameObject:
@@ -1705,7 +1799,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
