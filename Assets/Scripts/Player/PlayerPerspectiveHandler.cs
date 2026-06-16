@@ -9,10 +9,11 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 	class PhotoModeToggleable
 	{
 		[field: SerializeField, Tooltip("Object to be toggled.")]
-		public GameObject _object { get; private set; }
+		public GameObject Object { get; private set; }
 
-		[field: SerializeField, Tooltip("Whether to hide or show the object in photo mode.")]
-		public bool _enabledInPhotoMode { get; private set; } = false;
+		[field: SerializeField, Tooltip(
+				"Whether to hide or show the object in photo mode.")]
+		public bool EnabledInPhotoMode { get; private set; } = false;
 	}
 
 	public event Action<PlayerPerspectiveHandler> OnPerspectiveChange;
@@ -36,7 +37,10 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 				_playerLook.MinVerticalLook = -80f;
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
-				foreach (var toggleable in _objectsToToggle) { toggleable._object.SetActive(toggleable._enabledInPhotoMode); }
+				foreach (var toggleable in _objectsToToggle)
+				{
+					toggleable.Object.SetActive(toggleable.EnabledInPhotoMode);
+				}
 			}
 			else
 			{
@@ -45,7 +49,10 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 				_playerLook.HandleLook(new Vector2(0, 0));
 				Cursor.lockState = CursorLockMode.None;
 				Cursor.visible = true;
-				foreach (var toggleable in _objectsToToggle) { toggleable._object.SetActive(!toggleable._enabledInPhotoMode); }
+				foreach (var toggleable in _objectsToToggle)
+				{
+					toggleable.Object.SetActive(!toggleable.EnabledInPhotoMode);
+				}
 			}
 			OnPerspectiveChange?.Invoke(this);
 		}

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
 
 using UnityEngine;
@@ -19,9 +18,11 @@ public class AnimalHungerState : BehaviourState
 
 	private bool _stateEnabled = false;
 
+	// Could probably be changed to a list if an animal has multiple viable
+	// food types
 	[SerializeField]
-	private FoodType _viableFood; // Could probably be changed to a list if an animal has multiple viable food types
-	private FoodSource _nearestFoodSource;	
+	private FoodType _viableFood;
+	private FoodSource _nearestFoodSource;
 
 	private NavMeshAgent _agent;
 
@@ -29,14 +30,18 @@ public class AnimalHungerState : BehaviourState
 	{
 		_stateEnabled = true;
 		_agent = agent;
-		List<FoodSource> _foodSources = new(FindObjectsByType<FoodSource>(FindObjectsInactive.Exclude));
+		List<FoodSource> foodSources =
+			new(FindObjectsByType<FoodSource>(FindObjectsInactive.Exclude));
 
 		// Find nearest food source	
-		_nearestFoodSource = _foodSources[0];
+		_nearestFoodSource = foodSources[0];
 
-		_nearestFoodSource = _foodSources.Where(source => source.Type == _viableFood)
-		    .OrderByDescending(food => Vector3.Distance(_agent.transform.position, food.transform.position))
-		    .Last();
+		_nearestFoodSource =
+			foodSources.Where(source => source.Type == _viableFood)
+			.OrderByDescending(
+					food => Vector3.Distance(
+						_agent.transform.position, food.transform.position))
+			.Last();
 
 		agent.SetDestination(_nearestFoodSource.transform.position);
 	}
@@ -47,7 +52,7 @@ public class AnimalHungerState : BehaviourState
 		if (!_stateEnabled)
 		{
 			_currentHunger -= Time.deltaTime;
-			if(_currentHunger <= 0)
+			if (_currentHunger <= 0)
 			{
 				RaiseRequestEnter();
 			}
@@ -55,19 +60,19 @@ public class AnimalHungerState : BehaviourState
 		}
 
 		// Execute munch logic upon reaching food source
-		if(_agent.remainingDistance <= _agent.stoppingDistance)
-		{			
+		if (_agent.remainingDistance <= _agent.stoppingDistance)
+		{
 			_agent.SetDestination(_agent.transform.position);
 			_currentEatTime += Time.deltaTime;
-			if(_currentEatTime >= _maxEatTime)
+			if (_currentEatTime >= _maxEatTime)
 			{
 				_currentHunger += _nearestFoodSource.Value; // NOM
 				if (_currentHunger > _maxHunger) _currentHunger = _maxHunger;
 
 				_currentEatTime = 0;
 				_stateEnabled = false;
-				RaiseBehaviourEnd();							
-			}				
-		}		
+				RaiseBehaviourEnd();
+			}
+		}
 	}
 }

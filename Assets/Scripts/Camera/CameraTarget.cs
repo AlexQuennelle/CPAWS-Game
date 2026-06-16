@@ -12,7 +12,8 @@ public class CameraTarget : MonoBehaviour
 	public TargetInfo Info { get; private set; }
 	[SerializeField]
 	private List<TargetScoreModifier> _modifiers;
-
+	private Rect _bounds;
+	public Rect Bounds => _bounds;
 	/// <summary>
 	///   Calculates the final score the target should contribute to the final
 	///   picture. The score is calculated using the value in
@@ -31,27 +32,58 @@ public class CameraTarget : MonoBehaviour
 	/// </param>
 	public int? GetScore(Camera cam, Transform camTransform)
 	{
+		float score = Info.Score;
+		foreach (TargetScoreModifier modifier in _modifiers)
+		{
+			float modValue = modifier.GetValue(cam, camTransform, _bounds);
+			if (modifier.IsMultiplier)
+				score *= modValue;
+			else
+				score += modValue;
+		}
+
+		return Mathf.RoundToInt(score);
+	}
+
+	public void CalculateRect(Camera cam)
+	{
 		if (!TryGetComponent(out Collider col))
 		{
 			Debug.LogError($"ERROR: Cannot find Collider on {gameObject.name}");
-			return 0;
+			return;
 		}
 		Bounds bounds3D = col.bounds;
 		Vector3 center = bounds3D.center;
 		Vector3 extents = bounds3D.extents;
 		Vector3[] screenSpacePoints = {
-			cam.WorldToScreenPoint(new(center.x - extents.x, center.y - extents.y, center.z - extents.z)),
-			cam.WorldToScreenPoint(new(center.x + extents.x, center.y - extents.y, center.z - extents.z)),
-			cam.WorldToScreenPoint(new(center.x + extents.x, center.y + extents.y, center.z - extents.z)),
-			cam.WorldToScreenPoint(new(center.x - extents.x, center.y + extents.y, center.z - extents.z)),
-			cam.WorldToScreenPoint(new(center.x - extents.x, center.y - extents.y, center.z + extents.z)),
-			cam.WorldToScreenPoint(new(center.x + extents.x, center.y - extents.y, center.z + extents.z)),
-			cam.WorldToScreenPoint(new(center.x + extents.x, center.y + extents.y, center.z + extents.z)),
-			cam.WorldToScreenPoint(new(center.x - extents.x, center.y + extents.y, center.z + extents.z)),
+			cam.WorldToScreenPoint(new(center.x - extents.x,
+									   center.y - extents.y,
+									   center.z - extents.z)),
+			cam.WorldToScreenPoint(new(center.x + extents.x,
+									   center.y - extents.y,
+									   center.z - extents.z)),
+			cam.WorldToScreenPoint(new(center.x + extents.x,
+									   center.y + extents.y,
+									   center.z - extents.z)),
+			cam.WorldToScreenPoint(new(center.x - extents.x,
+									   center.y + extents.y,
+									   center.z - extents.z)),
+			cam.WorldToScreenPoint(new(center.x - extents.x,
+									   center.y - extents.y,
+									   center.z + extents.z)),
+			cam.WorldToScreenPoint(new(center.x + extents.x,
+									   center.y - extents.y,
+									   center.z + extents.z)),
+			cam.WorldToScreenPoint(new(center.x + extents.x,
+									   center.y + extents.y,
+									   center.z + extents.z)),
+			cam.WorldToScreenPoint(new(center.x - extents.x,
+									   center.y + extents.y,
+									   center.z + extents.z)),
 		};
-		Rect bounds = new();
 		Vector3 topRight = new();
-		Vector3 bottomLeft = new(float.MaxValue, float.MaxValue, float.MaxValue);
+		Vector3 bottomLeft =
+			new(float.MaxValue, float.MaxValue, float.MaxValue);
 		foreach (Vector3 point in screenSpacePoints)
 		{
 			topRight.x = Mathf.Max(topRight.x, point.x);
@@ -62,19 +94,7 @@ public class CameraTarget : MonoBehaviour
 			bottomLeft.z = Mathf.Min(bottomLeft.z, point.z);
 		}
 
-		bounds.min = bottomLeft;
-		bounds.max = topRight;
-
-		float score = Info.Score;
-		foreach (TargetScoreModifier modifier in _modifiers)
-		{
-			float modValue = modifier.GetValue(cam, camTransform, bounds);
-			if (modifier.IsMultiplier)
-				score *= modValue;
-			else
-				score += modValue;
-		}
-
-		return Mathf.RoundToInt(score);
+		_bounds.min = bottomLeft;
+		_bounds.max = topRight;
 	}
 }

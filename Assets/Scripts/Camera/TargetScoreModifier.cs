@@ -34,5 +34,6 @@ public abstract class TargetScoreModifier : MonoBehaviour
 	///   The calculated modifier value. How this value should be interpreted
 	///   is determined by the value of <see cref="IsMultiplier"/>.
 	/// </returns>
-	public abstract float GetValue(Camera cam, Transform camTransform, Rect bounds);
+	public abstract float GetValue(
+			Camera cam, Transform camTransform, Rect bounds);
 }

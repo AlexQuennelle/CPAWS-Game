@@ -6,10 +6,12 @@ public class PlayerJoystickMove : MonoBehaviour
 	[SerializeField]
 	private float _moveSpeed;
 
-	[SerializeField, Tooltip("Transform that will be rotated according to the player's movement direction")]
+	[SerializeField, Tooltip("Transform that will be rotated according to the"
+			+ " player's movement direction")]
 	private Transform _heading;
 
-	[SerializeField, Tooltip("Third person camera to align the movement axes with")]
+	[SerializeField, Tooltip(
+			"Third person camera to align the movement axes with")]
 	private Transform _cameraTransform;
 
 	[SerializeField]
@@ -17,7 +19,10 @@ public class PlayerJoystickMove : MonoBehaviour
 
 	private Vector2 _lastMoveInput;
 
-	private Quaternion _cameraRotation { get { return Quaternion.Euler(0, _cameraTransform.eulerAngles.y, 0); } }
+	private Quaternion CameraRotation
+	{
+		get { return Quaternion.Euler(0, _cameraTransform.eulerAngles.y, 0); }
+	}
 
 	private void OnEnable()
 	{
@@ -27,7 +32,10 @@ public class PlayerJoystickMove : MonoBehaviour
 	public void HandleMove(Vector2 move)
 	{
 		_lastMoveInput = move;
-		_heading.rotation = Quaternion.LookRotation(_cameraRotation * new Vector3(_lastMoveInput.x, 0f, _lastMoveInput.y));
+		_heading.rotation =
+			Quaternion.LookRotation(
+					CameraRotation
+					* new Vector3(_lastMoveInput.x, 0f, _lastMoveInput.y));
 	}
 
 	public void StopMove()
@@ -37,8 +45,15 @@ public class PlayerJoystickMove : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		Vector3 moveDirection = _cameraRotation * new Vector3(_lastMoveInput.x, 0f, _lastMoveInput.y);
+		Vector3 moveDirection =
+			CameraRotation
+			* new Vector3(_lastMoveInput.x, 0f, _lastMoveInput.y);
 
-		_rb.linearVelocity = new Vector3(moveDirection.x * _moveSpeed, _rb.linearVelocity.y, moveDirection.z * _moveSpeed);
+		_rb.linearVelocity =
+			new Vector3(
+					moveDirection.x * _moveSpeed,
+					_rb.linearVelocity.y,
+					moveDirection.z * _moveSpeed
+			);
 	}
 }
