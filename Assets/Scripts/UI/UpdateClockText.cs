@@ -13,6 +13,12 @@ public class UpdateClockText : MonoBehaviour
 
 	private void Update()
 	{
+		if (_daytimeTracker.EndAt == null)
+		{
+			_clockText.text = "DAY OVER";
+			return;
+		}
+
 		int time = Mathf.FloorToInt(_daytimeTracker.MaxTime - _daytimeTracker.TimeRemaining);
 		int minute = time % 60;
 		int hour = (time / 60) + _startingHour;

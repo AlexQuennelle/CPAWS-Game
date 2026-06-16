@@ -7,20 +7,21 @@ using UnityEngine;
 public class TimeKeeper : MonoBehaviour
 {
 	public event Action<TimeKeeper> OnTimeRunOut;
-	public event Action<TimeKeeper, float> OnTimeAdded;
+	public event Action<TimeKeeper> OnTimerReset;
 
 	[SerializeField]
 	private float _length = 60f;
-	[field: SerializeField]
+
+	[field: SerializeField, Tooltip("The total amount of time in the timer.")]
 	public float MaxTime { get; private set; }
 
 	private float _startedAt = 0;
-	private float? _endAt = 0;
+	public float? EndAt { get; private set; } = 0;
 	public float TimeRemaining
 	{
 		get
 		{
-			if (_endAt.HasValue) { return _endAt.Value - Time.time; }
+			if (EndAt.HasValue) { return EndAt.Value - Time.time; }
 			return float.MaxValue;
 		}
 	}
@@ -28,12 +29,12 @@ public class TimeKeeper : MonoBehaviour
 	private void OnEnable()
 	{
 		_startedAt = Time.time;
-		_endAt = _startedAt + _length;
+		EndAt = _startedAt + _length;
 	}
 
 	private void OnDisable()
 	{
-		_endAt = null;
+		EndAt = null;
 	}
 
 	private void Update()
@@ -41,13 +42,14 @@ public class TimeKeeper : MonoBehaviour
 		if (TimeRemaining <= 0f)
 		{
 			OnTimeRunOut?.Invoke(this);
-			_endAt = null;
+			EndAt = null;
 		}
 	}
 
 	public void ResetTimer()
 	{
 		_startedAt = Time.time;
-		_endAt = _startedAt + _length;
+		EndAt = _startedAt + _length;
+		OnTimerReset?.Invoke(this);
 	}
 }
