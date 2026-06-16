@@ -25,9 +25,11 @@ public class AnimalFleeState : BehaviourState
 
 	private void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.GetComponent<ScaryComponent>() != null)
+		ScaryComponent scaryComponent = collider.gameObject.GetComponent<ScaryComponent>();
+
+		if (scaryComponent != null)
 		{
-			if (collider.gameObject.GetComponent<ScaryComponent>().Scariness > _fearTolerance)
+			if (scaryComponent.Scariness > _fearTolerance)
 			{
 				_threat = collider.gameObject;
 				RaiseRequestEnter();
@@ -66,7 +68,7 @@ public class AnimalFleeState : BehaviourState
 		float distance = heading.magnitude;
 		Vector3 direction = heading / distance;
 
-		Vector3 newPosition = currentPosition + (direction * 10);
+		Vector3 newPosition = currentPosition + (direction * _fleeDistance);
 
 		newPosition += currentPosition;
 
