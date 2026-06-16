@@ -248,8 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPerspectiveHandler
   _playerLook: {fileID: 2295726039805448584}
   _objectsToToggle:
-  - <_object>k__BackingField: {fileID: 9181810280732225106}
-    <_enabledInPhotoMode>k__BackingField: 0
+  - <Object>k__BackingField: {fileID: 9181810280732225106}
+    <EnabledInPhotoMode>k__BackingField: 0
 --- !u!195 &2325575004615388158
 NavMeshAgent:
   m_ObjectHideFlags: 0
