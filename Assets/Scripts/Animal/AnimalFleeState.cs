@@ -65,12 +65,8 @@ public class AnimalFleeState : BehaviourState
 		// This means they get cornered and stuck very easily. Need to find a way around this
 		Vector3 currentPosition = transform.position;
 		Vector3 heading = currentPosition - threat.transform.position;
-		float distance = heading.magnitude;
-		Vector3 direction = heading / distance;
 
-		Vector3 newPosition = currentPosition + (direction * _fleeDistance);
-
-		newPosition += currentPosition;
+		Vector3 newPosition = currentPosition + (heading.normalized * _fleeDistance);
 
 		return newPosition;
 	}
