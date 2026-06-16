@@ -16,6 +16,18 @@ public class UpdateClockText : MonoBehaviour
 		int time = Mathf.FloorToInt(_daytimeTracker.MaxTime - _daytimeTracker.TimeRemaining);
 		int minute = time % 60;
 		int hour = (time / 60) + _startingHour;
-		_clockText.text = string.Format("{0:00}:{1:00}", hour, minute);
+
+		if(hour < 12)
+		{
+			_clockText.text = string.Format("{0:00}:{1:00}", hour, minute) + " AM";
+		}
+		else if(hour == 12)
+		{
+			_clockText.text = string.Format("{0:00}:{1:00}", hour, minute) + " PM";
+		}
+		else
+		{
+			_clockText.text = string.Format("{0:00}:{1:00}", hour - 12, minute) + " PM";
+		}
 	}
 }
