@@ -964,13 +964,22 @@
             "id": "a4210eb7-d6f4-4c43-a1a2-b305e0ceba89",
             "actions": [
                 {
-                    "name": "TouchMove",
-                    "type": "Value",
+                    "name": "TouchPos",
+                    "type": "PassThrough",
                     "id": "2efbb1bc-3202-49af-a146-2271c68c7994",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TouchMove",
+                    "type": "Button",
+                    "id": "7216a168-e583-4db9-9f1c-381a6a64e107",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -978,6 +987,17 @@
                     "name": "",
                     "id": "e65ed03d-4edb-4a9d-8fa1-db0aa597d308",
                     "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
+                    "action": "TouchPos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a68ff5e9-96da-4aaa-8012-1e1744bc90a4",
+                    "path": "<Touchscreen>/Press",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",

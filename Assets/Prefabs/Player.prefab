@@ -100,12 +100,13 @@ GameObject:
   - component: {fileID: 3651775884759918819}
   - component: {fileID: 5068150109211963204}
   - component: {fileID: 6934874903615552632}
+  - component: {fileID: 3620322612130802828}
   - component: {fileID: 2295726039805448584}
   - component: {fileID: 7838760146035666931}
   - component: {fileID: 2325575004615388158}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +144,10 @@ MonoBehaviour:
   _sensitivity: 0.5
   _playerLook: {fileID: 2295726039805448584}
   _playerJoystickMove: {fileID: 6934874903615552632}
-  _playerTouchMove: {fileID: 0}
+  _playerTouchMove: {fileID: 3620322612130802828}
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 64
   _playerPerspectiveHandler: {fileID: 7838760146035666931}
   _cameraSensor: {fileID: 6593094239846621978}
 --- !u!54 &5068150109211963204
@@ -189,6 +193,20 @@ MonoBehaviour:
   _heading: {fileID: 5010973229758479628}
   _cameraTransform: {fileID: 2502051356701679608}
   _rb: {fileID: 5068150109211963204}
+--- !u!114 &3620322612130802828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153215205650116951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee84c332058c82c5bb37d270edcfae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTouchMove
+  _agent: {fileID: 2325575004615388158}
+  _heading: {fileID: 5010973229758479628}
 --- !u!114 &2295726039805448584
 MonoBehaviour:
   m_ObjectHideFlags: 0
