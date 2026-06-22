@@ -1,39 +1,60 @@
-using Unity.Cinemachine;
+using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 
 public class PlayerPerspectiveHandler : MonoBehaviour
 {
-	[SerializeField]
-	private CinemachineCamera _firstPersonVCam;
-	[SerializeField]
-	private CinemachineCamera _thirdPersonVCam;
+	[Serializable]
+	class PhotoModeToggleable
+	{
+		[field: SerializeField, Tooltip("Object to be toggled.")]
+		public GameObject Object { get; private set; }
+
+		[field: SerializeField, Tooltip(
+				"Whether to hide or show the object in photo mode.")]
+		public bool EnabledInPhotoMode { get; private set; } = false;
+	}
+
+	public event Action<PlayerPerspectiveHandler> OnPerspectiveChange;
 
 	[SerializeField]
 	private PlayerLook _playerLook;
 
-	private bool _isFirstPerson = true;
-	public bool IsFirstPerson
+	[SerializeField]
+	private List<PhotoModeToggleable> _objectsToToggle;
+
+	private bool _isPhotoMode = false;
+	public bool IsPhotoMode
 	{
-		get { return _isFirstPerson; }
+		get { return _isPhotoMode; }
 		set
 		{
-			_isFirstPerson = value;
-			if (IsFirstPerson)
+			_isPhotoMode = value;
+			if (IsPhotoMode)
 			{
-				_firstPersonVCam.Priority = 1000;
-				_thirdPersonVCam.Priority = 0;
 				_playerLook.MaxVerticalLook = 80f;
 				_playerLook.MinVerticalLook = -80f;
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+				foreach (var toggleable in _objectsToToggle)
+				{
+					toggleable.Object.SetActive(toggleable.EnabledInPhotoMode);
+				}
 			}
 			else
 			{
-				_firstPersonVCam.Priority = 0;
-				_thirdPersonVCam.Priority = 1000;
 				_playerLook.MaxVerticalLook = 70f;
 				_playerLook.MinVerticalLook = -55f;
 				_playerLook.HandleLook(new Vector2(0, 0));
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+				foreach (var toggleable in _objectsToToggle)
+				{
+					toggleable.Object.SetActive(!toggleable.EnabledInPhotoMode);
+				}
 			}
+			OnPerspectiveChange?.Invoke(this);
 		}
 	}
 }
