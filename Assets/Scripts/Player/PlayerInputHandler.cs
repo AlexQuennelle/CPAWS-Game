@@ -22,8 +22,6 @@ public class PlayerInputHandler : MonoBehaviour
 	private PlayerPerspectiveHandler _playerPerspectiveHandler;
 	[SerializeField]
 	private CameraSensor _cameraSensor;
-
-	private Vector3 _hitPos;
 	private bool _isMoving = false;
 
 	private void OnEnable()
@@ -44,6 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
 		InputSystem.actions.FindAction("TakePicture").performed
 			+= HandleTakePicture;
 	}
+
 	private void OnDisable()
 	{
 		InputSystem.actions.FindAction("Look").performed -= OnLook;
@@ -64,25 +63,18 @@ public class PlayerInputHandler : MonoBehaviour
 					targetRay, out RaycastHit hit, float.MaxValue, _groundMask);
 		if (isHit && _isMoving)
 		{
-			_hitPos = hit.point;
 			_playerTouchMove.MovePlayer(hit.point);
 		}
 	}
+
 	private void OnTouch(InputAction.CallbackContext ctx)
 	{
 		_isMoving = ctx.performed;
-	}
-
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.green;
-		Gizmos.DrawSphere(_hitPos, 0.1f);
 	}
 	private void OnDrag(InputAction.CallbackContext ctx)
 	{
 		// Debug.Log(ctx.ReadValue<Vector2>());
 	}
-
 	private void OnLook(InputAction.CallbackContext ctx)
 	{
 		if (!_playerPerspectiveHandler.IsPhotoMode) return;
@@ -93,24 +85,20 @@ public class PlayerInputHandler : MonoBehaviour
 
 	private void OnChangeCamera(InputAction.CallbackContext ctx)
 	{
-		_playerPerspectiveHandler.IsPhotoMode =
-			!_playerPerspectiveHandler.IsPhotoMode;
+		_playerPerspectiveHandler.TogglePerspective();
 
 		_playerJoystickMove.StopMove();
 	}
-
 	private void OnMoveStart(InputAction.CallbackContext ctx)
 	{
 		if (_playerPerspectiveHandler.IsPhotoMode) return;
 
 		_playerJoystickMove.HandleMove(ctx.ReadValue<Vector2>());
 	}
-
 	private void OnMoveEnd(InputAction.CallbackContext ctx)
 	{
 		_playerJoystickMove.StopMove();
 	}
-
 	private void HandleTakePicture(InputAction.CallbackContext ctx)
 	{
 		if (!_playerPerspectiveHandler.IsPhotoMode) return;
