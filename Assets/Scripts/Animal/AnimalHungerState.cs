@@ -33,20 +33,20 @@ public class AnimalHungerState : BehaviourState
 		List<FoodSource> foodSources =
 			new(FindObjectsByType<FoodSource>(FindObjectsInactive.Exclude));
 
-		// Find nearest food source	
-		if
-		(
-			foodSources.Where(source => source.Type == _viableFood)
-			.Where(source => agent.CalculatePath(source.transform.position, agent.path) == true).Count() > 0
-		)
+		// Exclude unreachable and non-viable food types
+		foodSources = foodSources
+			.Where(item => item.Type == _viableFood)
+			.Where(source => agent.CalculatePath(source.transform.position, agent.path))
+			.ToList();
+
+		if (foodSources.Count() > 0)
 		{
-			_nearestFoodSource =
-			foodSources.Where(source => source.Type == _viableFood)
-			.Where(source => agent.CalculatePath(source.transform.position, agent.path) == true)
-			.OrderByDescending(
+			// Find nearest food source
+			_nearestFoodSource = foodSources
+				.OrderByDescending(
 					food => Vector3.Distance(
 						agent.transform.position, food.transform.position))
-			.Last();
+				.Last();
 		}
 
 		Debug.Log(_nearestFoodSource);
@@ -57,17 +57,11 @@ public class AnimalHungerState : BehaviourState
 		}
 		else
 		{
-			Debug.Log("No reachable food sources found");
 			_currentHunger = _maxHunger;
 			_currentEatTime = 0;
 			_stateEnabled = false;
 			RaiseBehaviourEnd();
 		}
-
-		//Test path calculation
-		/*NavMeshPath navMeshPath = new();
-		Vector3 target = new Vector3(5, 0, 5);
-		Debug.Log(agent.CalculatePath(target, navMeshPath));*/
 	}
 
 	private void Update()
