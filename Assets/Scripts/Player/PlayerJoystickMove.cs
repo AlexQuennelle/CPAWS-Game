@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerJoystickMove : MonoBehaviour
 {
-	[SerializeField]
-	private float _moveSpeed;
+	[field: SerializeField]
+	public float MoveSpeed { get; private set; }
 
 	[SerializeField, Tooltip("Transform that will be rotated according to the"
 			+ " player's movement direction")]
@@ -51,9 +51,9 @@ public class PlayerJoystickMove : MonoBehaviour
 
 		_rb.linearVelocity =
 			new Vector3(
-					moveDirection.x * _moveSpeed,
-					_rb.linearVelocity.y,
-					moveDirection.z * _moveSpeed
+					moveDirection.x * MoveSpeed,
+					0,
+					moveDirection.z * MoveSpeed
 			);
 	}
 }
