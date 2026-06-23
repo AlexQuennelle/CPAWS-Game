@@ -26,11 +26,11 @@ public class PlayerInputHandler : MonoBehaviour
 
 	private void OnEnable()
 	{
-		InputSystem.actions.FindActionMap("Player").Disable();
-		InputSystem.actions.FindActionMap("PlayerCamera(Touch)").Disable();
+		// InputSystem.actions.FindActionMap("Player").Disable();
+		// InputSystem.actions.FindActionMap("PlayerCamera(Touch)").Disable();
 		InputSystem.actions.FindAction("TouchDrag").performed += OnDrag;
 
-		InputSystem.actions.FindActionMap("PlayerMove(Touch)").Enable();
+		// InputSystem.actions.FindActionMap("PlayerMove(Touch)").Enable();
 		InputSystem.actions.FindAction("TouchMove").performed += OnTouch;
 		InputSystem.actions.FindAction("TouchMove").canceled += OnTouch;
 
