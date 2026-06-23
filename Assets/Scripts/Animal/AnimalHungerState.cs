@@ -34,16 +34,40 @@ public class AnimalHungerState : BehaviourState
 			new(FindObjectsByType<FoodSource>(FindObjectsInactive.Exclude));
 
 		// Find nearest food source	
-		_nearestFoodSource = foodSources[0];
-
-		_nearestFoodSource =
+		if
+		(
 			foodSources.Where(source => source.Type == _viableFood)
+			.Where(source => agent.CalculatePath(source.transform.position, agent.path) == true).Count() > 0
+		)
+		{
+			_nearestFoodSource =
+			foodSources.Where(source => source.Type == _viableFood)
+			.Where(source => agent.CalculatePath(source.transform.position, agent.path) == true)
 			.OrderByDescending(
 					food => Vector3.Distance(
-						_agent.transform.position, food.transform.position))
+						agent.transform.position, food.transform.position))
 			.Last();
+		}
 
-		agent.SetDestination(_nearestFoodSource.transform.position);
+		Debug.Log(_nearestFoodSource);
+
+		if (_nearestFoodSource != null)
+		{
+			agent.SetDestination(_nearestFoodSource.transform.position);
+		}
+		else
+		{
+			Debug.Log("No reachable food sources found");
+			_currentHunger = _maxHunger;
+			_currentEatTime = 0;
+			_stateEnabled = false;
+			RaiseBehaviourEnd();
+		}
+
+		//Test path calculation
+		/*NavMeshPath navMeshPath = new();
+		Vector3 target = new Vector3(5, 0, 5);
+		Debug.Log(agent.CalculatePath(target, navMeshPath));*/
 	}
 
 	private void Update()
@@ -60,7 +84,7 @@ public class AnimalHungerState : BehaviourState
 		}
 
 		// Execute munch logic upon reaching food source
-		if (_agent.remainingDistance <= _agent.stoppingDistance)
+		else if (_agent.remainingDistance <= _agent.stoppingDistance)
 		{
 			_agent.SetDestination(_agent.transform.position);
 			_currentEatTime += Time.deltaTime;
