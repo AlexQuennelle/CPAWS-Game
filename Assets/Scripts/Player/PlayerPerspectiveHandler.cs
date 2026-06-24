@@ -27,11 +27,6 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 	public bool IsPhotoMode { get; private set; } = false;
 	public void TogglePerspective()
 	{
-		// foreach (InputActionMap map in InputSystem.actions.actionMaps)
-		// {
-		// 	map.Disable();
-		// }
-
 		IsPhotoMode = !IsPhotoMode;
 		if (IsPhotoMode)
 		{
@@ -43,18 +38,6 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 			{
 				toggleable.Object.SetActive(toggleable.EnabledInPhotoMode);
 			}
-			// switch (_deviceHandler.ActiveInputDevice)
-			// {
-			// 	case SupportedInputDevices.MouseAndKeyboard:
-			// 		Debug.LogWarning("ActionMap not set up for m+kb");
-			// 		break;
-			// 	case SupportedInputDevices.Touchscreen:
-			// 		InputSystem.actions.FindActionMap("PlayerCamera(Touch)")
-			// 			.Enable();
-			// 		break;
-			// 	default:
-			// 		break;
-			// }
 		}
 		else
 		{
@@ -67,18 +50,6 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 			{
 				toggleable.Object.SetActive(!toggleable.EnabledInPhotoMode);
 			}
-			// switch (_deviceHandler.ActiveInputDevice)
-			// {
-			// 	case SupportedInputDevices.MouseAndKeyboard:
-			// 		Debug.LogWarning("ActionMap not set up for m+kb");
-			// 		break;
-			// 	case SupportedInputDevices.Touchscreen:
-			// 		InputSystem.actions.FindActionMap("PlayerMove(Touch)")
-			// 			.Enable();
-			// 		break;
-			// 	default:
-			// 		break;
-			// }
 		}
 		OnPerspectiveChange?.Invoke(this);
 	}

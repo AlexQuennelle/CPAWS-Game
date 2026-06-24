@@ -20,8 +20,8 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 		switch (ActiveInputDevice)
 		{
 			case SupportedInputDevices.MouseAndKeyboard:
-				// TODO: Set up keyboard input maps
-				Debug.LogWarning("ActionMap not set up for m+kb");
+				InputSystem.actions.FindActionMap("PlayerMove(KB)")
+					.Enable();
 				break;
 			case SupportedInputDevices.Touchscreen:
 				InputSystem.actions.FindActionMap("PlayerMove(Touch)")
@@ -66,10 +66,21 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 		_oldPerspective = _perspectiveHandler.IsPhotoMode;
 		if (_deviceChanged || perspectiveChanged)
 		{
+			Debug.Log(ActiveInputDevice);
 			_deviceChanged = false;
 			InputSystem.actions.Disable();
 			switch (ActiveInputDevice)
 			{
+				case SupportedInputDevices.MouseAndKeyboard
+					when _perspectiveHandler.IsPhotoMode:
+					InputSystem.actions.FindActionMap("PlayerCamera(KB)")
+						.Enable();
+					break;
+				case SupportedInputDevices.MouseAndKeyboard
+					when !_perspectiveHandler.IsPhotoMode:
+					InputSystem.actions.FindActionMap("PlayerMove(KB)")
+						.Enable();
+					break;
 				case SupportedInputDevices.Touchscreen
 					when _perspectiveHandler.IsPhotoMode:
 					OnDeviceChanged?.Invoke(this, ActiveInputDevice);

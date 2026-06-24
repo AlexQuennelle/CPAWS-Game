@@ -261,6 +261,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6153215205650116951, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
   m_PrefabInstance: {fileID: 1511492519}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &94973228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3620322612130802828, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+  m_PrefabInstance: {fileID: 1511492519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94973220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee84c332058c82c5bb37d270edcfae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTouchMove
 --- !u!114 &94973230 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7838760146035666931, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
@@ -1821,6 +1832,14 @@ PrefabInstance:
       value: Actions
       objectReference: {fileID: 0}
     - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _cameraTouchRect
+      value: 
+      objectReference: {fileID: 235200346}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
+      propertyPath: _groundMask.m_Bits
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651775884759918819, guid: bd94228c5562e0c46ad74d0653a21d00, type: 3}
       propertyPath: _defaultActionMap.m_Id
       value: a4fdf956-3b7b-4531-8002-740a2450ada8
       objectReference: {fileID: 0}
@@ -2085,6 +2104,18 @@ MonoBehaviour:
       - m_Target: {fileID: 94973230}
         m_TargetAssemblyTypeName: PlayerPerspectiveHandler, Assembly-CSharp
         m_MethodName: TogglePerspective
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 94973228}
+        m_TargetAssemblyTypeName: PlayerTouchMove, Assembly-CSharp
+        m_MethodName: StopPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

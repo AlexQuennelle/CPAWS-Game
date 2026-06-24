@@ -25,6 +25,11 @@ public class PlayerTouchMove : MonoBehaviour
 
 	public void MovePlayer(Vector3 target)
 	{
+		_agent.isStopped = false;
 		_agent.SetDestination(target);
+	}
+	public void StopPlayer()
+	{
+		_agent.isStopped = true;
 	}
 }
