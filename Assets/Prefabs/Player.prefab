@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 8369807283317814504}
   - {fileID: 3791868628670690726}
+  - {fileID: 4209143280189392233}
   m_Father: {fileID: 430499875604166551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5822149970062649803
@@ -192,12 +193,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputHandler
   _sensitivity: 0.5
   _playerLook: {fileID: 2295726039805448584}
+  _playerPerspectiveHandler: {fileID: 7838760146035666931}
   _playerJoystickMove: {fileID: 6934874903615552632}
   _playerTouchMove: {fileID: 3620322612130802828}
+  _cameraTouchRect: {fileID: 0}
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
-  _playerPerspectiveHandler: {fileID: 7838760146035666931}
   _cameraSensor: {fileID: 6593094239846621978}
 --- !u!114 &6934874903615552632
 MonoBehaviour:
@@ -287,8 +289,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4209143280189392233}
+  m_Children: []
   m_Father: {fileID: 430499875604166551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7744379401404656194
@@ -434,7 +435,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 234206802785840821}
+    m_TransformParent: {fileID: 5010973229758479628}
     m_Modifications:
     - target: {fileID: 891897951524723830, guid: 7ab46eb357c79ad7da450c0ffa4965fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -442,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 891897951524723830, guid: 7ab46eb357c79ad7da450c0ffa4965fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 891897951524723830, guid: 7ab46eb357c79ad7da450c0ffa4965fc, type: 3}
       propertyPath: m_LocalPosition.z

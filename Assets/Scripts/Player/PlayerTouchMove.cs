@@ -19,7 +19,7 @@ public class PlayerTouchMove : MonoBehaviour
 		Vector3 velocity = _agent.velocity;
 		if (velocity.magnitude > 0)
 		{
-			_heading.forward = velocity;
+			_heading.forward = velocity.normalized;
 		}
 	}
 
