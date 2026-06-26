@@ -16,7 +16,11 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 		public bool EnabledInPhotoMode { get; private set; } = false;
 	}
 
-	public event Action<PlayerPerspectiveHandler> OnPerspectiveChange;
+	/// <summary>
+	///   Event raised when perspective is changed. Passes the Perspective
+	///   handler and the current value of <see cref="IsPhotoMode"/>.
+	/// </summary>
+	public event Action<PlayerPerspectiveHandler, bool> OnPerspectiveChange;
 
 	[SerializeField]
 	private PlayerLook _playerLook;
@@ -25,6 +29,16 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 	private List<PhotoModeToggleable> _objectsToToggle;
 
 	public bool IsPhotoMode { get; private set; } = false;
+	/// <summary>
+	///   <para>
+	///     Toggles the player's perspective and handles all logic changes that
+	///     need to be dealt with as a result. This includes toggling the active
+	///     state of all perspective-specific objects.
+	///   </para>
+	///   <para>
+	///     Also raises the <see cref="OnPerspectiveChange"/> event.
+	///   </para>
+	/// </summary>
 	public void TogglePerspective()
 	{
 		IsPhotoMode = !IsPhotoMode;
@@ -51,6 +65,6 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 				toggleable.Object.SetActive(!toggleable.EnabledInPhotoMode);
 			}
 		}
-		OnPerspectiveChange?.Invoke(this);
+		OnPerspectiveChange?.Invoke(this, IsPhotoMode);
 	}
 }

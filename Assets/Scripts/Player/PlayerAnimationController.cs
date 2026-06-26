@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerAnimationController : MonoBehaviour
 {
@@ -9,17 +10,18 @@ public class PlayerAnimationController : MonoBehaviour
 	private Rigidbody _rb;
 
 	[SerializeField]
-	private PlayerJoystickMove _playerMove;
+	private NavMeshAgent _agent;
 
 	private float _sqrMaxSpeed;
 
 	private void Start()
 	{
-		_sqrMaxSpeed = _playerMove.MoveSpeed * _playerMove.MoveSpeed;
+		_sqrMaxSpeed = _agent.speed * _agent.speed;
 	}
 
 	private void Update()
 	{
-		_animator.SetFloat("Velocity", _rb.linearVelocity.sqrMagnitude / _sqrMaxSpeed);
+		_animator.SetFloat(
+				"Velocity", _agent.velocity.sqrMagnitude / _sqrMaxSpeed);
 	}
 }

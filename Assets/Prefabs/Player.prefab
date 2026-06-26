@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 5068150109211963204}
   - component: {fileID: 2325575004615388158}
   - component: {fileID: 3651775884759918819}
-  - component: {fileID: 6934874903615552632}
+  - component: {fileID: 8172113238109475162}
   - component: {fileID: 3620322612130802828}
   - component: {fileID: 2295726039805448584}
   - component: {fileID: 7838760146035666931}
@@ -127,7 +127,6 @@ Transform:
   m_Children:
   - {fileID: 2502051356701679608}
   - {fileID: 5010973229758479628}
-  - {fileID: 234206802785840821}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5068150109211963204
@@ -194,14 +193,13 @@ MonoBehaviour:
   _sensitivity: 0.5
   _playerLook: {fileID: 2295726039805448584}
   _playerPerspectiveHandler: {fileID: 7838760146035666931}
-  _playerJoystickMove: {fileID: 6934874903615552632}
   _playerTouchMove: {fileID: 3620322612130802828}
   _cameraTouchRect: {fileID: 0}
   _groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 96
   _cameraSensor: {fileID: 6593094239846621978}
---- !u!114 &6934874903615552632
+--- !u!114 &8172113238109475162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,13 +208,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6153215205650116951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91764c1eff447e04498a1adbbb7c546d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2af40f7e4736c3562ad9367ee01e9951, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
-  <MoveSpeed>k__BackingField: 5
-  _heading: {fileID: 5010973229758479628}
-  _cameraTransform: {fileID: 2502051356701679608}
-  _rb: {fileID: 5068150109211963204}
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputDeviceHandler
+  _perspectiveHandler: {fileID: 7838760146035666931}
 --- !u!114 &3620322612130802828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLook
   _playerPitch: {fileID: 4209143280189392233}
-  _playerYaw: {fileID: 234206802785840821}
+  _playerYaw: {fileID: 5010973229758479628}
+  _perspectiveHandler: {fileID: 7838760146035666931}
 --- !u!114 &7838760146035666931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,37 +257,6 @@ MonoBehaviour:
   _objectsToToggle:
   - <Object>k__BackingField: {fileID: 9181810280732225106}
     <EnabledInPhotoMode>k__BackingField: 0
---- !u!1 &6833482198078849283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 234206802785840821}
-  m_Layer: 0
-  m_Name: CameraYaw
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &234206802785840821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6833482198078849283}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 430499875604166551}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7744379401404656194
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +271,7 @@ GameObject:
   - component: {fileID: 7031186809008335839}
   m_Layer: 0
   m_Name: ThirdPersonCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -676,4 +641,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
   _animator: {fileID: 899365462809677344}
   _rb: {fileID: 5068150109211963204}
-  _playerMove: {fileID: 6934874903615552632}
+  _agent: {fileID: 2325575004615388158}

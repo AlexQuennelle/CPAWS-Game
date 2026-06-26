@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
@@ -6,6 +8,9 @@ public class PlayerLook : MonoBehaviour
 	private Transform _playerPitch;
 	[SerializeField]
 	private Transform _playerYaw;
+
+	[SerializeField]
+	private PlayerPerspectiveHandler _perspectiveHandler;
 
 	private float XRot { get; set; }
 	private float YRot { get; set; }
@@ -19,6 +24,23 @@ public class PlayerLook : MonoBehaviour
 		YRot = 0f;
 		_playerYaw.rotation = Quaternion.Euler(Vector3.zero);
 		_playerPitch.localRotation = Quaternion.Euler(Vector3.zero);
+
+		_perspectiveHandler.OnPerspectiveChange += OnPerspectiveChange;
+	}
+	private void OnDisable()
+	{
+		_perspectiveHandler.OnPerspectiveChange -= OnPerspectiveChange;
+	}
+
+	private void OnPerspectiveChange(
+			PlayerPerspectiveHandler handler, bool isPhotoMode)
+	{
+		if (isPhotoMode)
+		{
+			YRot = _playerYaw.rotation.eulerAngles.y;
+			XRot = 0f;
+			_playerPitch.localRotation = Quaternion.Euler(Vector3.zero);
+		}
 	}
 
 	public void HandleLook(Vector2 lookDelta)

@@ -14,12 +14,8 @@ public class PlayerInputHandler : MonoBehaviour
 	private PlayerLook _playerLook;
 	[SerializeField]
 	private PlayerPerspectiveHandler _playerPerspectiveHandler;
-	[Header("Keyboard and Mouse")]
 	[SerializeField]
-	private PlayerJoystickMove _playerJoystickMove;
-	[Header("Touch")]
-	[SerializeField]
-	private PlayerTouchMove _playerTouchMove;
+	private PlayerMovement _playerTouchMove;
 	[SerializeField]
 	private RectTransform _cameraTouchRect;
 	[SerializeField]
@@ -64,7 +60,7 @@ public class PlayerInputHandler : MonoBehaviour
 						targetRay, out RaycastHit hit, float.MaxValue, _groundMask);
 			if (isHit)
 			{
-				_playerTouchMove.MovePlayer(hit.point);
+				_playerTouchMove.MoveTo(hit.point);
 			}
 		}
 	}
@@ -84,15 +80,11 @@ public class PlayerInputHandler : MonoBehaviour
 			* mult) + rectParent.rect.position;
 		if (_cameraTouchRect.rect.Contains(screenPoint))
 		{
-			Debug.Log(ctx.ReadValue<Vector2>());
 			_playerLook.HandleLook(ctx.ReadValue<Vector2>() * _sensitivity);
 		}
 	}
 	private void OnLook(InputAction.CallbackContext ctx)
 	{
-		// if (!_playerPerspectiveHandler.IsPhotoMode) return;
-
-		Debug.Log(ctx.ReadValue<Vector2>());
 		Vector2 lookDelta = ctx.ReadValue<Vector2>() * _sensitivity;
 		_playerLook.HandleLook(lookDelta);
 	}
@@ -101,21 +93,18 @@ public class PlayerInputHandler : MonoBehaviour
 	{
 		_playerPerspectiveHandler.TogglePerspective();
 	}
-	// private void OnChangeCamera(InputAction.CallbackContext ctx)
-	// {
-	// 	_playerPerspectiveHandler.TogglePerspective();
-	//
-	// 	_playerJoystickMove.StopMove();
-	// }
 	private void OnMoveStart(InputAction.CallbackContext ctx)
 	{
-		if (_playerPerspectiveHandler.IsPhotoMode) return;
-
-		_playerJoystickMove.HandleMove(ctx.ReadValue<Vector2>());
+		var input = ctx.ReadValue<Vector2>();
+		var cameraYaw = Camera.main.transform.eulerAngles.y;
+		Vector3 moveDirection =
+			Quaternion.Euler(0, cameraYaw, 0)
+			* new Vector3(input.x, 0f, input.y);
+		_playerTouchMove.SetDirection(moveDirection.normalized);
 	}
 	private void OnMoveEnd(InputAction.CallbackContext ctx)
 	{
-		_playerJoystickMove.StopMove();
+		_playerTouchMove.StopPlayer();
 	}
 	private void HandleTakePicture(InputAction.CallbackContext ctx)
 	{

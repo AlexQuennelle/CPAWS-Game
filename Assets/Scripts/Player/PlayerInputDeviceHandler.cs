@@ -9,6 +9,18 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 	private PlayerPerspectiveHandler _perspectiveHandler;
 	public SupportedInputDevices ActiveInputDevice { get; private set; } =
 		SupportedInputDevices.MouseAndKeyboard;
+	/// <summary>
+	///   <para>
+	///     Event raised when the active input device or perspective is changed.
+	///     Unlike the events built in to the <see cref="InputSystem"/>, this
+	///     event is only fired when the value changes, rather than on all
+	///     updates.
+	///   </para>
+	///   <para>
+	///     Passes the current device handler and the
+	///     <see cref="SupportedInputDevices"/> enum value of the active device.
+	///   </para>
+	/// </summary>
 	public event Action<PlayerInputDeviceHandler, SupportedInputDevices>
 		OnDeviceChanged;
 	private bool _deviceChanged = true;
@@ -35,38 +47,13 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 	{
 		InputSystem.onActionChange -= OnActionChange;
 	}
-
-	private void OnActionChange(object arg1, InputActionChange change)
-	{
-		bool earlyReturn =
-			change != InputActionChange.ActionPerformed
-			&& change != InputActionChange.ActionStarted;
-		if (earlyReturn) return;
-
-		SupportedInputDevices oldDevice = ActiveInputDevice;
-		if (arg1 is InputAction action && action.activeControl != null)
-		{
-			ActiveInputDevice = action.activeControl.device.displayName switch
-			{
-				"Mouse" or "Keyboard" => SupportedInputDevices.MouseAndKeyboard,
-				"Touchscreen" => SupportedInputDevices.Touchscreen,
-				_ => SupportedInputDevices.UnsupportedDevice,
-			};
-		}
-		_deviceChanged = ActiveInputDevice != oldDevice | _deviceChanged;
-		if (_deviceChanged)
-		{
-			OnDeviceChanged?.Invoke(this, ActiveInputDevice);
-		}
-	}
-	void Update()
+	private void Update()
 	{
 		bool perspectiveChanged =
 			_perspectiveHandler.IsPhotoMode != _oldPerspective;
 		_oldPerspective = _perspectiveHandler.IsPhotoMode;
 		if (_deviceChanged || perspectiveChanged)
 		{
-			Debug.Log(ActiveInputDevice);
 			_deviceChanged = false;
 			InputSystem.actions.Disable();
 			switch (ActiveInputDevice)
@@ -95,6 +82,30 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 				default:
 					break;
 			}
+		}
+	}
+
+	private void OnActionChange(object arg1, InputActionChange change)
+	{
+		bool earlyReturn =
+			change != InputActionChange.ActionPerformed
+			&& change != InputActionChange.ActionStarted;
+		if (earlyReturn) return;
+
+		SupportedInputDevices oldDevice = ActiveInputDevice;
+		if (arg1 is InputAction action && action.activeControl != null)
+		{
+			ActiveInputDevice = action.activeControl.device.displayName switch
+			{
+				"Mouse" or "Keyboard" => SupportedInputDevices.MouseAndKeyboard,
+				"Touchscreen" => SupportedInputDevices.Touchscreen,
+				_ => SupportedInputDevices.UnsupportedDevice,
+			};
+		}
+		_deviceChanged = ActiveInputDevice != oldDevice | _deviceChanged;
+		if (_deviceChanged)
+		{
+			OnDeviceChanged?.Invoke(this, ActiveInputDevice);
 		}
 	}
 }
