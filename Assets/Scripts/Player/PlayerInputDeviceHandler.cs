@@ -24,7 +24,6 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 	public event Action<PlayerInputDeviceHandler, SupportedInputDevices>
 		OnDeviceChanged;
 	private bool _deviceChanged = true;
-	private bool _oldPerspective = false;
 
 	private void OnEnable()
 	{
