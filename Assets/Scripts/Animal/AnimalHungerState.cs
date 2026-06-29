@@ -33,17 +33,35 @@ public class AnimalHungerState : BehaviourState
 		List<FoodSource> foodSources =
 			new(FindObjectsByType<FoodSource>(FindObjectsInactive.Exclude));
 
-		// Find nearest food source	
-		_nearestFoodSource = foodSources[0];
+		// Exclude unreachable and non-viable food types
+		foodSources = foodSources
+			.Where(item => item.Type == _viableFood)
+			.Where(source => agent.CalculatePath(source.transform.position, agent.path))
+			.ToList();
 
-		_nearestFoodSource =
-			foodSources.Where(source => source.Type == _viableFood)
-			.OrderByDescending(
+		if (foodSources.Count() > 0)
+		{
+			// Find nearest food source
+			_nearestFoodSource = foodSources
+				.OrderByDescending(
 					food => Vector3.Distance(
-						_agent.transform.position, food.transform.position))
-			.Last();
+						agent.transform.position, food.transform.position))
+				.Last();
+		}
 
-		agent.SetDestination(_nearestFoodSource.transform.position);
+		Debug.Log(_nearestFoodSource);
+
+		if (_nearestFoodSource != null)
+		{
+			agent.SetDestination(_nearestFoodSource.transform.position);
+		}
+		else
+		{
+			_currentHunger = _maxHunger;
+			_currentEatTime = 0;
+			_stateEnabled = false;
+			RaiseBehaviourEnd();
+		}
 	}
 
 	private void Update()
@@ -60,7 +78,7 @@ public class AnimalHungerState : BehaviourState
 		}
 
 		// Execute munch logic upon reaching food source
-		if (_agent.remainingDistance <= _agent.stoppingDistance)
+		else if (_agent.remainingDistance <= _agent.stoppingDistance)
 		{
 			_agent.SetDestination(_agent.transform.position);
 			_currentEatTime += Time.deltaTime;
