@@ -15,7 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
 	[SerializeField]
 	private PlayerPerspectiveHandler _playerPerspectiveHandler;
 	[SerializeField]
-	private PlayerMovement _playerTouchMove;
+	private PlayerMovement _playerMove;
 	[SerializeField]
 	private RectTransform _cameraTouchRect;
 	[SerializeField]
@@ -60,7 +60,7 @@ public class PlayerInputHandler : MonoBehaviour
 						targetRay, out RaycastHit hit, float.MaxValue, _groundMask);
 			if (isHit)
 			{
-				_playerTouchMove.MoveTo(hit.point);
+				_playerMove.MoveTo(hit.point);
 			}
 		}
 	}
@@ -100,11 +100,11 @@ public class PlayerInputHandler : MonoBehaviour
 		Vector3 moveDirection =
 			Quaternion.Euler(0, cameraYaw, 0)
 			* new Vector3(input.x, 0f, input.y);
-		_playerTouchMove.SetDirection(moveDirection.normalized);
+		_playerMove.SetDirection(moveDirection.normalized);
 	}
 	private void OnMoveEnd(InputAction.CallbackContext ctx)
 	{
-		_playerTouchMove.StopPlayer();
+		_playerMove.StopPlayer();
 	}
 	private void HandleTakePicture(InputAction.CallbackContext ctx)
 	{

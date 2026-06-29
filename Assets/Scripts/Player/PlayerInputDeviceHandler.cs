@@ -25,9 +25,11 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 		OnDeviceChanged;
 	private bool _deviceChanged = true;
 	private bool _oldPerspective = false;
-	private void Start()
+
+	private void OnEnable()
 	{
-		InputSystem.onActionChange += OnActionChange;
+		_perspectiveHandler.OnPerspectiveChange += HandlePerspectiveChange;
+		InputSystem.onActionChange += HandleActionChange;
 		InputSystem.actions.Disable();
 		switch (ActiveInputDevice)
 		{
@@ -45,47 +47,47 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 	}
 	private void OnDisable()
 	{
-		InputSystem.onActionChange -= OnActionChange;
-	}
-	private void Update()
-	{
-		bool perspectiveChanged =
-			_perspectiveHandler.IsPhotoMode != _oldPerspective;
-		_oldPerspective = _perspectiveHandler.IsPhotoMode;
-		if (_deviceChanged || perspectiveChanged)
-		{
-			_deviceChanged = false;
-			InputSystem.actions.Disable();
-			switch (ActiveInputDevice)
-			{
-				case SupportedInputDevices.MouseAndKeyboard
-					when _perspectiveHandler.IsPhotoMode:
-					InputSystem.actions.FindActionMap("PlayerCamera(KB)")
-						.Enable();
-					break;
-				case SupportedInputDevices.MouseAndKeyboard
-					when !_perspectiveHandler.IsPhotoMode:
-					InputSystem.actions.FindActionMap("PlayerMove(KB)")
-						.Enable();
-					break;
-				case SupportedInputDevices.Touchscreen
-					when _perspectiveHandler.IsPhotoMode:
-					OnDeviceChanged?.Invoke(this, ActiveInputDevice);
-					InputSystem.actions.FindActionMap("PlayerCamera(Touch)")
-						.Enable();
-					break;
-				case SupportedInputDevices.Touchscreen
-					when !_perspectiveHandler.IsPhotoMode:
-					InputSystem.actions.FindActionMap("PlayerMove(Touch)")
-						.Enable();
-					break;
-				default:
-					break;
-			}
-		}
+		_perspectiveHandler.OnPerspectiveChange -= HandlePerspectiveChange;
+		InputSystem.onActionChange -= HandleActionChange;
 	}
 
-	private void OnActionChange(object arg1, InputActionChange change)
+	private void SetInputMap()
+	{
+		_deviceChanged = false;
+		InputSystem.actions.Disable();
+		switch (ActiveInputDevice)
+		{
+			case SupportedInputDevices.MouseAndKeyboard
+				when _perspectiveHandler.IsPhotoMode:
+				InputSystem.actions.FindActionMap("PlayerCamera(KB)")
+					.Enable();
+				break;
+			case SupportedInputDevices.MouseAndKeyboard
+				when !_perspectiveHandler.IsPhotoMode:
+				InputSystem.actions.FindActionMap("PlayerMove(KB)")
+					.Enable();
+				break;
+			case SupportedInputDevices.Touchscreen
+				when _perspectiveHandler.IsPhotoMode:
+				OnDeviceChanged?.Invoke(this, ActiveInputDevice);
+				InputSystem.actions.FindActionMap("PlayerCamera(Touch)")
+					.Enable();
+				break;
+			case SupportedInputDevices.Touchscreen
+				when !_perspectiveHandler.IsPhotoMode:
+				InputSystem.actions.FindActionMap("PlayerMove(Touch)")
+					.Enable();
+				break;
+			default:
+				break;
+		}
+	}
+	private void HandlePerspectiveChange(
+			PlayerPerspectiveHandler handler, bool isCameraMode)
+	{
+		SetInputMap();
+	}
+	private void HandleActionChange(object arg1, InputActionChange change)
 	{
 		bool earlyReturn =
 			change != InputActionChange.ActionPerformed
@@ -106,6 +108,7 @@ public class PlayerInputDeviceHandler : MonoBehaviour
 		if (_deviceChanged)
 		{
 			OnDeviceChanged?.Invoke(this, ActiveInputDevice);
+			SetInputMap();
 		}
 	}
 }
