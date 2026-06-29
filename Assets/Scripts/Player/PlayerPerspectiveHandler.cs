@@ -67,4 +67,20 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 		}
 		OnPerspectiveChange?.Invoke(this, IsPhotoMode);
 	}
+
+	/// <summary>
+	///   <para>
+	///     Forces player perspective to a certain state. Calls <see cref="TogglePerspective"/> 
+	///     and returns true if any change was made.
+	///   </para>
+	/// </summary>
+	public bool SetPerspective(bool isPhotoMode)
+	{
+		if ((IsPhotoMode && !isPhotoMode) || (!IsPhotoMode && isPhotoMode))
+		{
+			TogglePerspective();
+			return true;
+		}
+		return false;
+	}
 }
