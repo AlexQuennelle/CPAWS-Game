@@ -193,7 +193,7 @@ MonoBehaviour:
   _sensitivity: 0.5
   _playerLook: {fileID: 2295726039805448584}
   _playerPerspectiveHandler: {fileID: 7838760146035666931}
-  _playerTouchMove: {fileID: 3620322612130802828}
+  _playerMove: {fileID: 3620322612130802828}
   _cameraTouchRect: {fileID: 0}
   _groundMask:
     serializedVersion: 2
