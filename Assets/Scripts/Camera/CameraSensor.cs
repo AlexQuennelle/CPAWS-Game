@@ -117,7 +117,7 @@ public class CameraSensor : MonoBehaviour
 		PictureInfo info = new(pic, (int)score, subjects);
 
 		OnPictureTaken?.Invoke(this, info);
-		// return info;
+		Debug.Log(score);
 	}
 
 	/// <summary>

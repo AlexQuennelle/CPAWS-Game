@@ -9,7 +9,8 @@ public class TargetCenteredModifier : TargetScoreModifier
 	[SerializeField]
 	private bool _invert = false;
 
-	public override float GetValue(Camera cam, Transform transform, Rect bounds)
+	public override float GetValue(
+			Camera cam, Transform camTransform, Rect bounds)
 	{
 		float normalizedDist =
 			Vector2.Distance(cam.pixelRect.center, bounds.center)
