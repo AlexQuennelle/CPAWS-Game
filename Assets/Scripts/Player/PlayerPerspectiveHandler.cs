@@ -16,7 +16,11 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 		public bool EnabledInPhotoMode { get; private set; } = false;
 	}
 
-	public event Action<PlayerPerspectiveHandler> OnPerspectiveChange;
+	/// <summary>
+	///   Event raised when perspective is changed. Passes the Perspective
+	///   handler and the current value of <see cref="IsPhotoMode"/>.
+	/// </summary>
+	public event Action<PlayerPerspectiveHandler, bool> OnPerspectiveChange;
 
 	[SerializeField]
 	private PlayerLook _playerLook;
@@ -24,37 +28,43 @@ public class PlayerPerspectiveHandler : MonoBehaviour
 	[SerializeField]
 	private List<PhotoModeToggleable> _objectsToToggle;
 
-	private bool _isPhotoMode = false;
-	public bool IsPhotoMode
+	public bool IsPhotoMode { get; private set; } = false;
+	/// <summary>
+	///   <para>
+	///     Toggles the player's perspective and handles all logic changes that
+	///     need to be dealt with as a result. This includes toggling the active
+	///     state of all perspective-specific objects.
+	///   </para>
+	///   <para>
+	///     Also raises the <see cref="OnPerspectiveChange"/> event.
+	///   </para>
+	/// </summary>
+	public void TogglePerspective()
 	{
-		get { return _isPhotoMode; }
-		set
+		IsPhotoMode = !IsPhotoMode;
+		if (IsPhotoMode)
 		{
-			_isPhotoMode = value;
-			if (IsPhotoMode)
+			_playerLook.MaxVerticalLook = 80f;
+			_playerLook.MinVerticalLook = -80f;
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+			foreach (var toggleable in _objectsToToggle)
 			{
-				_playerLook.MaxVerticalLook = 80f;
-				_playerLook.MinVerticalLook = -80f;
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-				foreach (var toggleable in _objectsToToggle)
-				{
-					toggleable.Object.SetActive(toggleable.EnabledInPhotoMode);
-				}
+				toggleable.Object.SetActive(toggleable.EnabledInPhotoMode);
 			}
-			else
-			{
-				_playerLook.MaxVerticalLook = 70f;
-				_playerLook.MinVerticalLook = -55f;
-				_playerLook.HandleLook(new Vector2(0, 0));
-				Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
-				foreach (var toggleable in _objectsToToggle)
-				{
-					toggleable.Object.SetActive(!toggleable.EnabledInPhotoMode);
-				}
-			}
-			OnPerspectiveChange?.Invoke(this);
 		}
+		else
+		{
+			_playerLook.MaxVerticalLook = 70f;
+			_playerLook.MinVerticalLook = -55f;
+			_playerLook.HandleLook(new Vector2(0, 0));
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+			foreach (var toggleable in _objectsToToggle)
+			{
+				toggleable.Object.SetActive(!toggleable.EnabledInPhotoMode);
+			}
+		}
+		OnPerspectiveChange?.Invoke(this, IsPhotoMode);
 	}
 }
