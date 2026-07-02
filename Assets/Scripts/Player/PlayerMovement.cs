@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
 		Vector3 velocity = _agent.velocity;
 		if (velocity.magnitude > 0)
 		{
-			Debug.Log(velocity);
 			_heading.forward = velocity.normalized;
 		}
 	}

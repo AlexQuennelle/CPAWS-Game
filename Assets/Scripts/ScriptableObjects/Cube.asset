@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cube
   m_EditorClassIdentifier: Assembly-CSharp::TargetInfo
   <Name>k__BackingField: Cube
-  <Score>k__BackingField: 10
+  <Score>k__BackingField: 100
   <Description>k__BackingField: cube.
