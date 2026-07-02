@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 394805232}
   - component: {fileID: 394805231}
   - component: {fileID: 394805236}
-  - component: {fileID: 394805235}
+  - component: {fileID: 394805237}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -829,22 +829,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &394805235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394805230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d34c5a9e45ae7ba79ec98d394f5d56f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetCenteredModifier
-  <IsMultiplier>k__BackingField: 1
-  _minMod: 0
-  _maxMod: 1
-  _invert: 0
 --- !u!114 &394805236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,7 +843,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraTarget
   <Info>k__BackingField: {fileID: 11400000, guid: 22fc9d617ea08360e960f720e7cd2654, type: 2}
   _modifiers:
-  - {fileID: 394805235}
+  - {fileID: 0}
+--- !u!114 &394805237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394805230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2b82055da720e4ba2373c5736edf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetCenteredModifier
+  <IsMultiplier>k__BackingField: 1
+  _minMod: 0
+  _maxMod: 1
+  _invert: 0
 --- !u!1 &413235148
 GameObject:
   m_ObjectHideFlags: 0
