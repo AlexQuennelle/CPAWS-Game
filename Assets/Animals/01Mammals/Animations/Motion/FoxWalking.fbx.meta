@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50637f57ee1020a4d82fed580c814bb3
+guid: cf8643a30bfb0f74db3e68dc4d50ce48
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: BearEating
-      takeName: BearEating
-      internalID: -3501065825130251074
-      firstFrame: 16
-      lastFrame: 25
+      name: FoxWalking
+      takeName: FoxWalking
+      internalID: -5743396473424156381
+      firstFrame: 0
+      lastFrame: 14
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
-      cycleOffset: 9
+      cycleOffset: 14
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -58,7 +58,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 16
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
