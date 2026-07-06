@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: MooseWalking
+      name: A_MooseWalking
       takeName: MooseWalking
       internalID: -5372434049620407855
       firstFrame: 0

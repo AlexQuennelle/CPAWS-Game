@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: HareWalking
+      name: A_HareWalking
       takeName: HareWalking
       internalID: -3494225096969474815
       firstFrame: 0

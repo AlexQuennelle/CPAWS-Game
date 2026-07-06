@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: BearWalking
+      name: A_BearWalking
       takeName: BearWalking
       internalID: -7383734095501388766
       firstFrame: 1

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50637f57ee1020a4d82fed580c814bb3
+guid: dd11adb7e4dede442b26df9b09cba694
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: A_BearEating
-      takeName: BearEating
-      internalID: -3501065825130251074
-      firstFrame: 16
-      lastFrame: 30
+      name: A_HareSleeping
+      takeName: HareSleeping
+      internalID: 4252659309553856954
+      firstFrame: 35
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

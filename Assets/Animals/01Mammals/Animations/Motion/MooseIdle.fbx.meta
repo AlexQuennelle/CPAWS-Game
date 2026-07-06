@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: MooseIdle
+      name: A_MooseIdle
       takeName: MooseIdle
       internalID: -1139946453518063343
       firstFrame: 51

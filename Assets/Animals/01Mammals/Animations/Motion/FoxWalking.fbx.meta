@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: FoxWalking
+      name: A_FoxWalking
       takeName: FoxWalking
       internalID: -5743396473424156381
       firstFrame: 0
