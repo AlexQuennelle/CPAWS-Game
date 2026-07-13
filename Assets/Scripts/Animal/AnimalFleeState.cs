@@ -25,7 +25,8 @@ public class AnimalFleeState : BehaviourState
 
 	private void OnTriggerEnter(Collider collider)
 	{
-		ScaryComponent scaryComponent = collider.gameObject.GetComponent<ScaryComponent>();
+		ScaryComponent scaryComponent =
+			collider.gameObject.GetComponent<ScaryComponent>();
 
 		if (scaryComponent != null)
 		{
@@ -39,7 +40,7 @@ public class AnimalFleeState : BehaviourState
 
 
 	// Update is called once per frame
-	void Update()
+	private void Update()
 	{
 		if (!_stateEnabled) return;
 
@@ -58,11 +59,14 @@ public class AnimalFleeState : BehaviourState
 		}
 	}
 
-	// Calculate a posiion far away from the threat
-	Vector3 GetFleePosition(GameObject threat)
+	/// <summary>
+	///   Calculate a position far away from the threat.
+	/// </summary>
+	private Vector3 GetFleePosition(GameObject threat)
 	{
-		// TO-DO: Currently the animal only calculates positions directly opposite the threat
-		// This means they get cornered and stuck very easily. Need to find a way around this
+		// TODO: Currently the animal only calculates positions directly
+		//       opposite the threat. This means they get cornered and stuck
+		//       very easily. Need to find a way around this
 		Vector3 currentPosition = transform.position;
 		Vector3 heading = currentPosition - threat.transform.position;
 

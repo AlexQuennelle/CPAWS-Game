@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -21,8 +19,7 @@ public class TimeKeeper : MonoBehaviour
 	{
 		get
 		{
-			if (EndAt.HasValue) { return EndAt.Value - Time.time; }
-			return float.MaxValue;
+			return EndAt.HasValue ? EndAt.Value - Time.time : float.MaxValue;
 		}
 	}
 

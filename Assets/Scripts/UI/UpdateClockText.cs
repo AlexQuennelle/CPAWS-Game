@@ -23,17 +23,11 @@ public class UpdateClockText : MonoBehaviour
 		int minute = time % 60;
 		int hour = (time / 60) + _startingHour;
 
-		if(hour < 12)
+		_clockText.text = hour switch
 		{
-			_clockText.text = string.Format("{0:00}:{1:00}", hour, minute) + " AM";
-		}
-		else if(hour == 12)
-		{
-			_clockText.text = string.Format("{0:00}:{1:00}", hour, minute) + " PM";
-		}
-		else
-		{
-			_clockText.text = string.Format("{0:00}:{1:00}", hour - 12, minute) + " PM";
-		}
+			< 12 => string.Format("{0:00}:{1:00}", hour, minute) + " AM",
+			12 => string.Format("{0:00}:{1:00}", hour, minute) + " PM",
+			_ => string.Format("{0:00}:{1:00}", hour - 12, minute) + " PM",
+		};
 	}
 }
