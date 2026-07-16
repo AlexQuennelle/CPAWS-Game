@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dirt_tiling
+  m_Name: M_Dirt_tiling
   m_Shader: {fileID: -6465566751694194690, guid: cfe77b84818cc334a8c0a544c7119b6c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -65,6 +65,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 1bc0b7a86337285499daab1bb6cb23df, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Main_Texture:
+        m_Texture: {fileID: 2800000, guid: 1bc0b7a86337285499daab1bb6cb23df, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -79,6 +83,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_06caec8c0c414fcb8636c4724022db6f_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 1bc0b7a86337285499daab1bb6cb23df, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_2ea51c01c676481187f8320d271a7f35_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 249ce6828bc5a48409f78610d8fae1ae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Secondary_Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Secondary_Texture_1:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -114,8 +130,11 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _Alpha_Exposure: 0
+    - _Alpha_Tilling: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _Blend_amount: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -130,12 +149,20 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Mask_Fuzziness: 0
+    - _Mask_Range: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Secondary: 1
+    - _Secondary_Exposure: 0
+    - _Secondary_Hue_Shift: 0
+    - _Secondary_Texture: 0
+    - _Secondary_Texture_TIling: 0
+    - _Secondary_Tilling_Amount: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -151,6 +178,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Hue_Shift: {r: 1, g: 1, b: 1, a: 0}
+    - _Secondary_Hue_Shift: {r: 1, g: 1, b: 1, a: 0}
+    - _Secondary_Hue_Shift_1: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
