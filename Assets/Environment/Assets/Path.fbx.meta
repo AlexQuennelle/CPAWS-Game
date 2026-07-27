@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 496e9f459bf14994b9640bc862d155e4
+guid: 66258cdb3518ea642a2701a597f0b35b
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,18 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: booth
-    second: {fileID: 2100000, guid: e4e20bdcbe4900d40af10b566661b11c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: canoo
-    second: {fileID: 2100000, guid: fb414f834d8a4a54e9034b9df24f5060, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tipi
-    second: {fileID: 2100000, guid: 4dde685f09bde9a4084383672321e5c1, type: 2}
+      name: standardSurface1
+    second: {fileID: 2100000, guid: 90b0cc2caeb6a3c4793b2d47ee240d42, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
