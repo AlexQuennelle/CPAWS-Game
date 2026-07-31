@@ -13,7 +13,7 @@ public class DaytimePhotoHolder : MonoBehaviour
 	[SerializeField]
 	private CameraSensor _cameraSensor;
 
-	public List<PictureInfo> _photos { get; private set; } = new();
+	public List<PictureInfo> Photos { get; private set; } = new();
 
 	private int _photosTaken;
 
@@ -30,7 +30,7 @@ public class DaytimePhotoHolder : MonoBehaviour
 
 	private void HandlePictureTaken(CameraSensor sens, PictureInfo picInfo)
 	{
-		_photos.Add(picInfo);
+		Photos.Add(picInfo);
 		_photosTaken++;
 		if(_photosTaken >= _photosPerDay)
 		{
