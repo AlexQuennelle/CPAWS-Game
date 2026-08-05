@@ -1,8 +1,6 @@
-using System;
-
-using Unity.VisualScripting;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +20,10 @@ public class GameManager : MonoBehaviour
 	private GameObject _endOfDayUI;
 	[SerializeField]
 	private DisplayEndOfDayPhotos _endOfDayPhotoDisplay;
+	[SerializeField]
+	private GameObject _photoSelectionUI;
+	[SerializeField]
+	private GameObject _photoReviewUI;
 
 	[Header("Player")]
 	[SerializeField]
@@ -38,6 +40,8 @@ public class GameManager : MonoBehaviour
 		_photoModeUI.SetActive(false);
 		_overworldUI.SetActive(true);
 		_endOfDayUI.SetActive(false);
+		_photoSelectionUI.SetActive(true);
+		_photoReviewUI.SetActive(false);
 	}
 
 	private void OnDisable()
@@ -54,7 +58,8 @@ public class GameManager : MonoBehaviour
 	{
 		// save photos here?
 
-
+		_photoSelectionUI.SetActive(false);
+		_photoReviewUI.SetActive(true);
 	}
 
 	private void EndDay()
@@ -65,5 +70,10 @@ public class GameManager : MonoBehaviour
 		_endOfDayPhotoDisplay.DisplayPhotos(_daytimePhotoHolder.Photos);
 		_perspectiveHandler.SetPerspective(isPhotoMode: false);
 		_inputHandler.enabled = false;
+	}
+
+	public void ReloadSceneTemp()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
