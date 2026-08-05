@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4953927129803517134
+--- !u!114 &-8012809107848503423
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass_tiling
+  m_Name: M_Stone
   m_Shader: {fileID: -6465566751694194690, guid: 86c1cf85e5580ee47974a89453542f74, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,16 +29,16 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2001
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: _Secondary_Tilling_Amount
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 76aca1a00a25cb74aa643f3ffb19cb91, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -47,7 +47,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 10, y: 10}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailMask:
         m_Texture: {fileID: 0}
@@ -62,11 +62,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 76aca1a00a25cb74aa643f3ffb19cb91, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Main_Texture:
-        m_Texture: {fileID: 2800000, guid: 76aca1a00a25cb74aa643f3ffb19cb91, type: 3}
+        m_Texture: {fileID: 2800000, guid: 77d3ab2737fba694d8b9631d8d497fee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -85,27 +85,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_06caec8c0c414fcb8636c4724022db6f_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 76aca1a00a25cb74aa643f3ffb19cb91, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_147b9d3af7f9435da24c3802662d3b22_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 76aca1a00a25cb74aa643f3ffb19cb91, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_2ea51c01c676481187f8320d271a7f35_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 249ce6828bc5a48409f78610d8fae1ae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Secondary_Alpha:
-        m_Texture: {fileID: 2800000, guid: 249ce6828bc5a48409f78610d8fae1ae, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Secondary_Texture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Secondary_Texture_1:
+    - _Secondary_Texture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -115,14 +103,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Specular:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _T_Rock_Bc:
-        m_Texture: {fileID: 2800000, guid: 76aca1a00a25cb74aa643f3ffb19cb91, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture:
-        m_Texture: {fileID: 2800000, guid: 76aca1a00a25cb74aa643f3ffb19cb91, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -142,11 +122,11 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Alpha_Exposure: 6.76
+    - _Alpha_Exposure: 0
     - _Alpha_Tilling: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _Blend_amount: 10
+    - _Blend_amount: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -157,33 +137,30 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Exposure: 0.82
+    - _Exposure: 1.56
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Mask_Exposure: 0
     - _Mask_Fuzziness: 0
-    - _Mask_Range: 0
+    - _Mask_Range: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
-    - _QueueOffset: 1
+    - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Secondary: 1
     - _Secondary_Exposure: 0
-    - _Secondary_Hue_Shift: 0
-    - _Secondary_Texture: 0
-    - _Secondary_Texture_TIling: 2.71
+    - _Secondary_Texture_TIling: 0
     - _Secondary_Tilling_Amount: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Specular_Sterengh: 0
+    - _Specular_Sterengh: 0.5
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Tile_Amount: 2.77
+    - _Tile_Amount: 1.15
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
@@ -193,7 +170,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Hue_Shift: {r: 1, g: 1, b: 1, a: 0}
     - _Secondary_Hue_Shift: {r: 1, g: 1, b: 1, a: 0}
-    - _Secondary_Hue_Shift_1: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
