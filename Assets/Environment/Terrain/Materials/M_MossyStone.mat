@@ -161,7 +161,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Exposure: 0.77
+    - _Exposure: 1.73
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -175,7 +175,7 @@ Material:
     - _QueueOffset: 1
     - _ReceiveShadows: 1
     - _Secondary: 1
-    - _Secondary_Exposure: -0.36
+    - _Secondary_Exposure: -1.51
     - _Secondary_Hue_Shift: 1
     - _Secondary_Texture: 0
     - _Secondary_Texture_TIling: 5.52
