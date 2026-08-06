@@ -179,7 +179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalWanderState
   <Priority>k__BackingField: 2
   StateEnabled: 0
-  _wanderRange: 10
+  _minWanderRange: 0.5
+  _maxWanderRange: 10
   _maxWaitTime: 20
   _minWaitTime: 0
 --- !u!114 &8003725658622467284

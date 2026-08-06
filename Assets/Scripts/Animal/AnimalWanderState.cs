@@ -4,6 +4,10 @@ using UnityEngine.AI;
 public class AnimalWanderState : BehaviourState
 {
 	[SerializeField]
+	private float _minWanderRange;
+	[SerializeField]
+	private float _maxWanderRange;
+
 	private float _wanderRange;
 
 	// Timer vars for raising an enter request
@@ -31,6 +35,8 @@ public class AnimalWanderState : BehaviourState
 	// Calculates a random position based on the animal's current location
 	private Vector3 GetWanderPosition()
 	{
+		_wanderRange = Random.Range(_minWanderRange, _maxWanderRange);
+
 		Vector3 currentPosition = transform.position;
 
 		Vector3 newPosition = new(
