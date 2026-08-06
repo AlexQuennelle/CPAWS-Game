@@ -16,7 +16,7 @@ public class AnimalHungerState : BehaviourState
 	private float _currentEatTime = 0;
 
 
-	private bool _stateEnabled = false;
+	//private bool _stateEnabled = false;
 
 	// Could probably be changed to a list if an animal has multiple viable
 	// food types
@@ -28,7 +28,7 @@ public class AnimalHungerState : BehaviourState
 
 	public override void EnterState(NavMeshAgent agent)
 	{
-		_stateEnabled = true;
+		StateEnabled = true;
 		_agent = agent;
 		List<FoodSource> foodSources =
 			new(FindObjectsByType<FoodSource>(FindObjectsInactive.Exclude));
@@ -59,15 +59,16 @@ public class AnimalHungerState : BehaviourState
 		{
 			_currentHunger = _maxHunger;
 			_currentEatTime = 0;
-			_stateEnabled = false;
+			StateEnabled = false;
 			RaiseBehaviourEnd();
 		}
 	}
 
 	private void Update()
 	{
+		Debug.Log(StateEnabled);
 		// Make animal more hungry over time
-		if (!_stateEnabled)
+		if (!StateEnabled)
 		{
 			_currentHunger -= Time.deltaTime;
 			if (_currentHunger <= 0)
@@ -88,7 +89,7 @@ public class AnimalHungerState : BehaviourState
 				if (_currentHunger > _maxHunger) _currentHunger = _maxHunger;
 
 				_currentEatTime = 0;
-				_stateEnabled = false;
+				StateEnabled = false;
 				RaiseBehaviourEnd();
 			}
 		}
