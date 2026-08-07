@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class AnimalFleeState : BehaviourState
 {
+	[SerializeField]
+	private Animator _animator;
 	private NavMeshAgent _agent;
 	private GameObject _threat;
 
@@ -18,7 +20,11 @@ public class AnimalFleeState : BehaviourState
 		StateEnabled = true;
 		_agent = agent;
 
-		if (_threat != null) _agent.SetDestination(GetFleePosition(_threat));
+		if (_threat != null)
+		{
+			_animator.SetTrigger("Walk");
+			_agent.SetDestination(GetFleePosition(_threat));
+		}
 	}
 
 	private void OnTriggerEnter(Collider collider)

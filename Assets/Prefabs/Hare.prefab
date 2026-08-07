@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 5196209895533600535}
   - component: {fileID: 8003725658622467284}
   - component: {fileID: 6791523168195213459}
+  - component: {fileID: 8440706621456372195}
+  - component: {fileID: 7859733513389013144}
   m_Layer: 0
   m_Name: Hare
   m_TagString: Untagged
@@ -165,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalIdleState
   <Priority>k__BackingField: -1
   StateEnabled: 0
+  _animator: {fileID: 719195481532830988}
 --- !u!114 &5196209895533600535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalWanderState
   <Priority>k__BackingField: 2
   StateEnabled: 0
+  _animator: {fileID: 719195481532830988}
   _minWanderRange: 0.5
   _maxWanderRange: 10
   _maxWaitTime: 20
@@ -197,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalFleeState
   <Priority>k__BackingField: 10
   StateEnabled: 0
+  _animator: {fileID: 719195481532830988}
   _detectionSphere: {fileID: 4814779834111469548}
   _fleeDistance: 20
   _fearTolerance: 0
@@ -214,10 +219,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalHungerState
   <Priority>k__BackingField: 9
   StateEnabled: 0
+  _animator: {fileID: 719195481532830988}
   _maxHunger: 50
   _currentHunger: 50
   _maxEatTime: 7
   _viableFood: 0
+--- !u!114 &8440706621456372195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601873450949570500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9131d57ccd1bd0b19b202767d7701d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraTarget
+  <Info>k__BackingField: {fileID: 11400000, guid: 22fc9d617ea08360e960f720e7cd2654, type: 2}
+  _modifiers:
+  - {fileID: 7859733513389013144}
+--- !u!114 &7859733513389013144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601873450949570500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2b82055da720e4ba2373c5736edf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetCenteredModifier
+  <IsMultiplier>k__BackingField: 0
+  _minMod: 0
+  _maxMod: 1
+  _invert: 0
 --- !u!1001 &8918821808066464724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,8 +310,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b10c7104a351b7443a1ee4dbb71d004e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 719195481532830988}
   m_SourcePrefab: {fileID: 100100000, guid: b10c7104a351b7443a1ee4dbb71d004e, type: 3}
+--- !u!1 &8576943861325248133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b10c7104a351b7443a1ee4dbb71d004e, type: 3}
+  m_PrefabInstance: {fileID: 8918821808066464724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &719195481532830988
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576943861325248133}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32f982c7aa3047541ab276dc0c506d7f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &8956740824850394175 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b10c7104a351b7443a1ee4dbb71d004e, type: 3}

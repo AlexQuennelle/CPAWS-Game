@@ -4,6 +4,8 @@ using UnityEngine.AI;
 public class AnimalWanderState : BehaviourState
 {
 	[SerializeField]
+	private Animator _animator;
+	[SerializeField]
 	private float _minWanderRange;
 	[SerializeField]
 	private float _maxWanderRange;
@@ -27,6 +29,7 @@ public class AnimalWanderState : BehaviourState
 	}
 	public override void EnterState(NavMeshAgent agent)
 	{
+		_animator.SetTrigger("Walk");
 		_agent = agent;
 		StateEnabled = true;
 		agent.destination = GetWanderPosition();

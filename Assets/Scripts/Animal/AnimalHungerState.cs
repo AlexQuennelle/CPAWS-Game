@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class AnimalHungerState : BehaviourState
 {
 	[SerializeField]
+	private Animator _animator;
+	[SerializeField]
 	private float _maxHunger;
 	[SerializeField]
 	private float _currentHunger;
@@ -53,6 +55,7 @@ public class AnimalHungerState : BehaviourState
 
 		if (_nearestFoodSource != null)
 		{
+			_animator.SetTrigger("Walk");
 			agent.SetDestination(_nearestFoodSource.transform.position);
 		}
 		else
@@ -81,6 +84,7 @@ public class AnimalHungerState : BehaviourState
 		// Execute munch logic upon reaching food source
 		else if (_agent.remainingDistance <= _agent.stoppingDistance)
 		{
+			_animator.SetBool("Eating", true);
 			_agent.SetDestination(_agent.transform.position);
 			_currentEatTime += Time.deltaTime;
 			if (_currentEatTime >= _maxEatTime)
@@ -90,6 +94,7 @@ public class AnimalHungerState : BehaviourState
 
 				_currentEatTime = 0;
 				StateEnabled = false;
+				_animator.SetBool("Eating", false);
 				RaiseBehaviourEnd();
 			}
 		}
