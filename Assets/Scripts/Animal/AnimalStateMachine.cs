@@ -58,6 +58,7 @@ public class AnimalStateMachine : MonoBehaviour
 
 		if (_currentState.Priority < state.Priority || _currentState == _defaultState)
 		{
+			_currentState.StateEnabled = false;
 			SwitchState(state);
 		}
 	}

@@ -6,8 +6,6 @@ public class AnimalFleeState : BehaviourState
 	private NavMeshAgent _agent;
 	private GameObject _threat;
 
-	private bool _stateEnabled = false;
-
 	[SerializeField]
 	private SphereCollider _detectionSphere;
 	[SerializeField]
@@ -17,7 +15,7 @@ public class AnimalFleeState : BehaviourState
 
 	public override void EnterState(NavMeshAgent agent)
 	{
-		_stateEnabled = true;
+		StateEnabled = true;
 		_agent = agent;
 
 		if (_threat != null) _agent.SetDestination(GetFleePosition(_threat));
@@ -41,7 +39,7 @@ public class AnimalFleeState : BehaviourState
 	// Update is called once per frame
 	void Update()
 	{
-		if (!_stateEnabled) return;
+		if (!StateEnabled) return;
 
 		if (_agent.remainingDistance <= _agent.stoppingDistance)
 		{
@@ -52,7 +50,7 @@ public class AnimalFleeState : BehaviourState
 			}
 			else
 			{
-				_stateEnabled = false;
+				StateEnabled = false;
 				RaiseBehaviourEnd();
 			}
 		}

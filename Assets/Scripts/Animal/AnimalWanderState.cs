@@ -4,8 +4,11 @@ using UnityEngine.AI;
 public class AnimalWanderState : BehaviourState
 {
 	[SerializeField]
+	private float _minWanderRange;
+	[SerializeField]
+	private float _maxWanderRange;
+
 	private float _wanderRange;
-	private bool _stateEnabled = false;
 
 	// Timer vars for raising an enter request
 	[SerializeField]
@@ -25,13 +28,15 @@ public class AnimalWanderState : BehaviourState
 	public override void EnterState(NavMeshAgent agent)
 	{
 		_agent = agent;
-		_stateEnabled = true;
+		StateEnabled = true;
 		agent.destination = GetWanderPosition();
 	}
 
 	// Calculates a random position based on the animal's current location
 	private Vector3 GetWanderPosition()
 	{
+		_wanderRange = Random.Range(_minWanderRange, _maxWanderRange);
+
 		Vector3 currentPosition = transform.position;
 
 		Vector3 newPosition = new(
@@ -47,7 +52,7 @@ public class AnimalWanderState : BehaviourState
 
 	private void Update()
 	{
-		if (!_stateEnabled)
+		if (!StateEnabled)
 		{
 			// Periodically request to enter this state
 			_currentTime += Time.deltaTime;
@@ -62,7 +67,7 @@ public class AnimalWanderState : BehaviourState
 
 		if (_agent.remainingDistance <= _agent.stoppingDistance)
 		{
-			_stateEnabled = false;
+			StateEnabled = false;
 			_waitTime = Random.Range(_minWaitTime, _maxWaitTime);
 			_currentTime = 0;
 			RaiseBehaviourEnd();

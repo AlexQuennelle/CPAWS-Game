@@ -18,6 +18,7 @@ public abstract class BehaviourState : MonoBehaviour
 
 	[field: SerializeField]
 	public int Priority { get; private set; }
+	public bool StateEnabled;
 
 	protected void RaiseRequestEnter()
 	{
